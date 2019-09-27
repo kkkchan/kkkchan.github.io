@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>基本数据结构 - kkkchan</title>
+<title>正则表达式 - kkkchan</title>
 
 
 
@@ -78,7 +78,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/favicon.svg" alt="基本数据结构" height="28">
+                <img src="/images/favicon.svg" alt="正则表达式" height="28">
             
             </a>
         </div>
@@ -134,17 +134,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-27T12:45:39.000Z">2019-09-27</time>
+                <time class="level-item has-text-grey" datetime="2019-09-27T13:37:23.000Z">2019-09-27</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Java/">Java</a>
+                <a class="has-link-grey -link" href="/categories/Python/">Python</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 355 个字)
+                    4 分钟 读完 (大约 643 个字)
                 </span>
                 
                 
@@ -153,58 +153,122 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                基本数据结构
+                正则表达式
             
         </h1>
         <div class="content">
-            <p>数组等结构</p>
+            <p>简单介绍正则表达式的思想及用法</p>
 <a id="more"></a>
 
-<h2 id="一维数组"><a href="#一维数组" class="headerlink" title="一维数组"></a>一维数组</h2><p>用于存储<strong>相同数据类型</strong>的量，一旦创建，不可更改大小，数组名为<strong>引用变量</strong></p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//声明</span></span><br><span class="line">elementType[] arrayRefVar;</span><br><span class="line"><span class="hljs-comment">//创建</span></span><br><span class="line">elementType[] arrayRefVar = <span class="hljs-keyword">new</span> elementType[arraySize];</span><br><span class="line"><span class="hljs-comment">//初始化</span></span><br><span class="line">elementType[] arrayRefVar = &#123;value0, value1,...,valuek&#125;;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//匿名数组创建</span></span><br><span class="line"><span class="hljs-keyword">new</span> elementType[]&#123;value0, value1,...,valuek&#125;;</span><br></pre></td></tr></table></figure>
-
-<h3 id="大小如何确定？"><a href="#大小如何确定？" class="headerlink" title="大小如何确定？"></a>大小如何确定？</h3><p>1.指定大小(创建) 2.默认大小(初始化)</p>
-<h3 id="如何复制数组元素（非引用）？"><a href="#如何复制数组元素（非引用）？" class="headerlink" title="如何复制数组元素（非引用）？"></a>如何复制数组元素（非引用）？</h3><ol>
-<li>逐个操作</li>
-<li>静态方法 System.arraycopy()</li>
-<li>clone()</li>
-</ol>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//arraycopy的使用</span></span><br><span class="line">System.arraycopy(sourceArray, srcPos, targetArray, tarPos, length);</span><br></pre></td></tr></table></figure>
-
-<h3 id="方法中可变参数列表"><a href="#方法中可变参数列表" class="headerlink" title="方法中可变参数列表"></a>方法中可变参数列表</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//typeName... parameterName</span></span><br><span class="line"><span class="hljs-comment">//一个方法中只能指定一个可变参数，必须放在常规参数之后</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="java-util-Arrays类"><a href="#java-util-Arrays类" class="headerlink" title="java.util.Arrays类"></a>java.util.Arrays类</h3><p>该类提供了诸多数组处理的<strong>静态方法</strong>，如下列几条</p>
+<h2 id="什么是正则表达式"><a href="#什么是正则表达式" class="headerlink" title="什么是正则表达式"></a>什么是正则表达式</h2><ul>
+<li>用来简洁表达一组字符串的表达式</li>
+<li>一种通用的字符串表达框架</li>
+<li>可以用来判断某字符串的特征归属</li>
+<li>更是一种针对字符串表达“简洁”和“特征”思想的工具</li>
+</ul>
+<h2 id="独特优势"><a href="#独特优势" class="headerlink" title="独特优势"></a>独特优势</h2><p><strong>简洁高效</strong>，用来简洁表达一组字符串，主要使用在字符串匹配中（一行胜千言）</p>
+<h2 id="语法构成"><a href="#语法构成" class="headerlink" title="语法构成"></a>语法构成</h2><p>由字符和操作符构成</p>
 <table>
 <thead>
 <tr>
-<th>sort(numbers)</th>
-<th></th>
+<th align="left">操作符</th>
+<th align="left">说明</th>
+<th>实例</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>parallelSort(chars, startpos, endpos)</td>
+<td align="left">.</td>
+<td align="left">表示任何单个字符(除了\)</td>
 <td></td>
 </tr>
 <tr>
-<td>binarySearch(arary, pos)</td>
+<td align="left">[ ]</td>
+<td align="left">字符集,对单个字符给出取值范围</td>
+<td>[abc]表示a、b、c,[a‐z]表示a到z单个字符</td>
+</tr>
+<tr>
+<td align="left">[^ ]</td>
+<td align="left">非字符集,对单个字符给出排除范围</td>
+<td>[^abc]表示非a或b或c的单个字符</td>
+</tr>
+<tr>
+<td align="left">*</td>
+<td align="left">前一个字符0次或无限次扩展</td>
+<td>abc* 表示 ab、abc、abcc、abccc等</td>
+</tr>
+<tr>
+<td align="left">+</td>
+<td align="left">前一个字符1次或无限次扩展</td>
+<td>abc+ 表示 abc、abcc、abccc等</td>
+</tr>
+<tr>
+<td align="left">?</td>
+<td align="left">前一个字符0次或1次扩展</td>
+<td>abc? 表示 ab、abc</td>
+</tr>
+<tr>
+<td align="left">|</td>
+<td align="left">左右表达式任意一个</td>
+<td>abc</td>
+</tr>
+<tr>
+<td align="left">{m}</td>
+<td align="left">扩展前一个字符m次</td>
+<td>ab{2}c表示abbc</td>
+</tr>
+<tr>
+<td align="left">{m,n}</td>
+<td align="left">扩展前一个字符m至n次(含n)</td>
+<td>ab{1,2}c表示abc、abbc</td>
+</tr>
+<tr>
+<td align="left">^</td>
+<td align="left">匹配字符串开头</td>
+<td>^abc表示abc且在一个字符串的开头</td>
+</tr>
+<tr>
+<td align="left">$</td>
+<td align="left">匹配字符串结尾</td>
+<td>abc$表示abc且在一个字符串的结尾</td>
+</tr>
+<tr>
+<td align="left">( )</td>
+<td align="left">分组标记,内部只能使用|操作符</td>
+<td>(abc)表示abc, （abc|def）表示abc、def</td>
+</tr>
+<tr>
+<td align="left">\d</td>
+<td align="left">数字,等价于[0‐9]</td>
 <td></td>
 </tr>
 <tr>
-<td>equals(array1, array2)</td>
+<td align="left">\w</td>
+<td align="left">单词字符,等价于[A‐Za‐z0‐9]</td>
 <td></td>
-</tr>
-<tr>
-<td>fill(array, num);  fill(array, startpos, endpos, num)</td>
-<td>整体填充数组；部分填充数组</td>
-</tr>
-<tr>
-<td>toString(array)</td>
-<td>返回包含数组内所有元素的字符串</td>
 </tr>
 </tbody></table>
-<h2 id="多维数组"><a href="#多维数组" class="headerlink" title="多维数组"></a>多维数组</h2><p>创建、初始化同一维数组，只在于括号数量的区别，创建多维数组时，<strong>必须指定第一维的大小</strong></p>
-<h3 id="锯齿数组"><a href="#锯齿数组" class="headerlink" title="锯齿数组"></a>锯齿数组</h3><p>锯齿数组指一类多维（以二维为例），其各维的数据长度不同</p>
-<p>由于每行本身是一个数组，如果创建时，每行单独创建就可以设置不同的长度</p>
+<p>补充：</p>
+<ul>
+<li>匹配中文字符</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[\u4e00-\u9fa5]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>匹配IP地址(4段，每段为0-255) </li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">((25[0-5]|2\d&#123;0-4&#125;\d|1\d&#123;2&#125;|[1-9]?\d).)&#123;3&#125;(25[0-5]|2\d&#123;0-4&#125;\d|1\d&#123;2&#125;|[1-9]?\d)</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用正则表达式"><a href="#使用正则表达式" class="headerlink" title="使用正则表达式"></a>使用正则表达式</h2><p><strong>编译</strong>（将符合正则表达式语法的字符串转换成正则表达式特征）</p>
+<h3 id="python中使用"><a href="#python中使用" class="headerlink" title="python中使用"></a>python中使用</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> re</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>re库需要采用raw string类型(字符串中的<code>\</code>不被理解为转移符，如果用string就会比较繁琐)表示正则表达式，表示为<code>r&#39;text&#39;</code></li>
+<li>通过group方法，可以获取正则表达式中的字符串</li>
+</ul>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">re.search(<span class="hljs-string">r'text'</span>).group()</span><br><span class="line">re.search(<span class="hljs-string">r'text'</span>).group(<span class="hljs-number">0</span>) <span class="hljs-comment"># 与上行相同，反正整体匹配字符串</span></span><br><span class="line">re.search(<span class="hljs-string">r'text'</span>).group(<span class="hljs-number">1</span>) <span class="hljs-comment"># </span></span><br><span class="line">re.search(<span class="hljs-string">r'text'</span>).group(<span class="hljs-number">2</span>)</span><br><span class="line">re.search(<span class="hljs-string">r'text'</span>).group(<span class="hljs-number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="匹配规则"><a href="#匹配规则" class="headerlink" title="匹配规则"></a>匹配规则</h3><p><strong>贪婪匹配</strong>：匹配字符串为满足条件的最长字符串</p>
+<p>通过在匹配规则中加上?可以进行最小匹配</p>
 
         </div>
         
@@ -212,7 +276,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Java/">Java</a>
+                    <a class="has-link-grey -link" href="/tags/网络爬虫/">网络爬虫</a>
                 </div>
             </div>
         </div>
@@ -248,17 +312,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/09/27/IO及异常处理/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">IO及异常处理</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/09/27/简单程序设计/">
-                <span class="level-item">简单程序设计</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/09/27/网络爬虫/requests库笔记/">
+                <span class="level-item">requests库笔记</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -311,7 +368,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        9
+                        12
                     </p>
                 </div>
             </div>
@@ -321,7 +378,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        2
+                        3
                     </p>
                 </div>
             </div>
@@ -331,7 +388,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        2
+                        3
                     </p>
                 </div>
             </div>
@@ -410,6 +467,14 @@
                 <span class="level-item tag">7</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/Python/">
+            <span class="level-start">
+                <span class="level-item">Python</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/随笔/">
             <span class="level-start">
                 <span class="level-item">随笔</span>
@@ -429,7 +494,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+        <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/网络爬虫/" style="font-size: 15px;">网络爬虫</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
     </div>
 </div>
 
@@ -446,7 +511,64 @@
         
         <article class="media">
             
-            <a href="/2019/09/27/泛型/" class="media-left">
+            <a href="/2019/09/27/网络爬虫/正则表达式/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="正则表达式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T13:37:23.000Z">2019-09-27</time></div>
+                    <a href="/2019/09/27/网络爬虫/正则表达式/" class="title has-link-black-ter is-size-6 has-text-weight-normal">正则表达式</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/27/网络爬虫/requests库笔记/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="requests库笔记">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T13:35:09.000Z">2019-09-27</time></div>
+                    <a href="/2019/09/27/网络爬虫/requests库笔记/" class="title has-link-black-ter is-size-6 has-text-weight-normal">requests库笔记</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/27/网络爬虫/BeautifulSoup库笔记/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="BeautifulSoup库笔记">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T13:32:56.000Z">2019-09-27</time></div>
+                    <a href="/2019/09/27/网络爬虫/BeautifulSoup库笔记/" class="title has-link-black-ter is-size-6 has-text-weight-normal">BeautifulSoup库笔记</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/27/Java/泛型/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="泛型">
                 </p>
@@ -455,7 +577,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T12:49:43.000Z">2019-09-27</time></div>
-                    <a href="/2019/09/27/泛型/" class="title has-link-black-ter is-size-6 has-text-weight-normal">泛型</a>
+                    <a href="/2019/09/27/Java/泛型/" class="title has-link-black-ter is-size-6 has-text-weight-normal">泛型</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Java/">Java</a>
                     </p>
@@ -465,7 +587,7 @@
         
         <article class="media">
             
-            <a href="/2019/09/27/类和对象/" class="media-left">
+            <a href="/2019/09/27/Java/类和对象/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="类和对象">
                 </p>
@@ -474,64 +596,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T12:48:52.000Z">2019-09-27</time></div>
-                    <a href="/2019/09/27/类和对象/" class="title has-link-black-ter is-size-6 has-text-weight-normal">类和对象</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java/">Java</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/09/27/IO及异常处理/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="IO及异常处理">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T12:47:16.000Z">2019-09-27</time></div>
-                    <a href="/2019/09/27/IO及异常处理/" class="title has-link-black-ter is-size-6 has-text-weight-normal">IO及异常处理</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java/">Java</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/09/27/基本数据结构/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="基本数据结构">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T12:45:39.000Z">2019-09-27</time></div>
-                    <a href="/2019/09/27/基本数据结构/" class="title has-link-black-ter is-size-6 has-text-weight-normal">基本数据结构</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java/">Java</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/09/27/简单程序设计/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="简单程序设计">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T12:44:51.000Z">2019-09-27</time></div>
-                    <a href="/2019/09/27/简单程序设计/" class="title has-link-black-ter is-size-6 has-text-weight-normal">简单程序设计</a>
+                    <a href="/2019/09/27/Java/类和对象/" class="title has-link-black-ter is-size-6 has-text-weight-normal">类和对象</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Java/">Java</a>
                     </p>
@@ -557,7 +622,7 @@
                     <span class="level-item">九月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">9</span>
+                    <span class="level-item tag">12</span>
                 </span>
             </a>
         </li>
@@ -579,6 +644,13 @@
                     <a class="tags has-addons" href="/tags/Java/">
                         <span class="tag">Java</span>
                         <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/网络爬虫/">
+                        <span class="tag">网络爬虫</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -614,7 +686,64 @@
         
         <article class="media">
             
-            <a href="/2019/09/27/泛型/" class="media-left">
+            <a href="/2019/09/27/网络爬虫/正则表达式/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="正则表达式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T13:37:23.000Z">2019-09-27</time></div>
+                    <a href="/2019/09/27/网络爬虫/正则表达式/" class="title has-link-black-ter is-size-6 has-text-weight-normal">正则表达式</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/27/网络爬虫/requests库笔记/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="requests库笔记">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T13:35:09.000Z">2019-09-27</time></div>
+                    <a href="/2019/09/27/网络爬虫/requests库笔记/" class="title has-link-black-ter is-size-6 has-text-weight-normal">requests库笔记</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/27/网络爬虫/BeautifulSoup库笔记/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="BeautifulSoup库笔记">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T13:32:56.000Z">2019-09-27</time></div>
+                    <a href="/2019/09/27/网络爬虫/BeautifulSoup库笔记/" class="title has-link-black-ter is-size-6 has-text-weight-normal">BeautifulSoup库笔记</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/27/Java/泛型/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="泛型">
                 </p>
@@ -623,7 +752,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T12:49:43.000Z">2019-09-27</time></div>
-                    <a href="/2019/09/27/泛型/" class="title has-link-black-ter is-size-6 has-text-weight-normal">泛型</a>
+                    <a href="/2019/09/27/Java/泛型/" class="title has-link-black-ter is-size-6 has-text-weight-normal">泛型</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Java/">Java</a>
                     </p>
@@ -633,7 +762,7 @@
         
         <article class="media">
             
-            <a href="/2019/09/27/类和对象/" class="media-left">
+            <a href="/2019/09/27/Java/类和对象/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="类和对象">
                 </p>
@@ -642,64 +771,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T12:48:52.000Z">2019-09-27</time></div>
-                    <a href="/2019/09/27/类和对象/" class="title has-link-black-ter is-size-6 has-text-weight-normal">类和对象</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java/">Java</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/09/27/IO及异常处理/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="IO及异常处理">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T12:47:16.000Z">2019-09-27</time></div>
-                    <a href="/2019/09/27/IO及异常处理/" class="title has-link-black-ter is-size-6 has-text-weight-normal">IO及异常处理</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java/">Java</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/09/27/基本数据结构/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="基本数据结构">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T12:45:39.000Z">2019-09-27</time></div>
-                    <a href="/2019/09/27/基本数据结构/" class="title has-link-black-ter is-size-6 has-text-weight-normal">基本数据结构</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java/">Java</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/09/27/简单程序设计/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="简单程序设计">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T12:44:51.000Z">2019-09-27</time></div>
-                    <a href="/2019/09/27/简单程序设计/" class="title has-link-black-ter is-size-6 has-text-weight-normal">简单程序设计</a>
+                    <a href="/2019/09/27/Java/类和对象/" class="title has-link-black-ter is-size-6 has-text-weight-normal">类和对象</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Java/">Java</a>
                     </p>
@@ -725,7 +797,7 @@
                     <span class="level-item">九月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">9</span>
+                    <span class="level-item tag">12</span>
                 </span>
             </a>
         </li>
@@ -747,6 +819,13 @@
                     <a class="tags has-addons" href="/tags/Java/">
                         <span class="tag">Java</span>
                         <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/网络爬虫/">
+                        <span class="tag">网络爬虫</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -774,7 +853,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/favicon.svg" alt="基本数据结构" height="28">
+                    <img src="/images/favicon.svg" alt="正则表达式" height="28">
                 
                 </a>
                 <p class="is-size-7">
