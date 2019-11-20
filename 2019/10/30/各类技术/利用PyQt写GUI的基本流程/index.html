@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>PyQt开发基本框架及线程 - kkkchan</title>
+<title>利用PyQt写GUI的基本流程 - kkkchan</title>
 
 
 
@@ -85,7 +85,7 @@ var _hmt = _hmt || [];
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/favicon.svg" alt="PyQt开发基本框架及线程" height="28">
+                <img src="/images/favicon.svg" alt="利用PyQt写GUI的基本流程" height="28">
             
             </a>
         </div>
@@ -141,7 +141,7 @@ var _hmt = _hmt || [];
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-11-04T05:09:03.509Z">2019-11-04</time>
+                <time class="level-item has-text-grey" datetime="2019-10-30T15:14:32.874Z">2019-10-30</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/Python-GUI/">Python-GUI</a>
@@ -151,7 +151,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    9 分钟 读完 (大约 1366 个字)
+                    3 分钟 读完 (大约 394 个字)
                 </span>
                 
                 
@@ -160,42 +160,23 @@ var _hmt = _hmt || [];
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                PyQt开发基本框架及线程
+                利用PyQt写GUI的基本流程
             
         </h1>
         <div class="content">
-            <p>简要介绍PyQt基本实现框架，和线程设计的一些问题</p>
+            <p>大作业途中的一个收获</p>
 <a id="more"></a>
-<p>在利用PyQt做界面设计过程中，发现并不是将原有代码随意往GUI功能块上进行简单的拼凑，不然也太过于简单了，虽然大多优秀的工程都是优美、简洁的，其背后的付出和设计却大相径庭，往往是十分繁琐、耗时，需要大量精力投入、精密计算和创造性设计的。（题外话）</p>
-<p>虽然这些内容其它博客大多有，但却并不是我的思维，不是我的尝试和学习过程，自己总结出的经验才是适合自己的，能让我在之后忘记这一切的当头通过这些文字快速串联起来。</p>
-<h2 id="基本框架"><a href="#基本框架" class="headerlink" title="基本框架"></a>基本框架</h2><p>（基于将设计文件已转换为了Python文件，忽略大多需要引用的类）</p>
-<p>自动转化而成的Python设计文件，其内容就是一个类，其中有两个方法：<code>setupUi</code>、 <code>retranslateUI</code></p>
-<p>为了整个项目的模块化和后期阅读、更改、维护，尽量新建文件放置功能模块代码。以下基本框架介绍按照运行的递归顺序。</p>
-<h3 id="界面运行"><a href="#界面运行" class="headerlink" title="界面运行"></a>界面运行</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:</span><br><span class="line">    app = QApplication(sys.argv)</span><br><span class="line">    my = MyMainWindow()</span><br><span class="line">    my.show()</span><br><span class="line"></span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
 
-<p>这处为界面运行的引导代码，第一句和第四句一般是固定的（QApplication为从PyQt中引入的模块），二三句则是自行调整，此处我们的窗体类名为<code>MyMainWindow</code>，实例化对象命名为<code>my</code>，通过方法<code>show</code>进行循环运行。</p>
-<p>若设计多个界面跳转，可建立多个窗体类和实例化对象，通过事件（通常即按钮）来进行跳转响应。</p>
-<h3 id="窗体类"><a href="#窗体类" class="headerlink" title="窗体类"></a>窗体类</h3><p>窗体类中，主要用于功能与界面设计中模块的绑定（如按钮、输入输出文本框等等）</p>
-<p>PyQt中常用的模块主要有：Push Button、Label、Text Browser、Line Edit、Text Edit。</p>
-<p>在初始化方法里，进行<strong>按钮绑定</strong>（主要是按钮）</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyMainWindow</span><span class="hljs-params">(QMainWindow, main_ui.Ui_MainWindow)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, parent=None)</span>:</span></span><br><span class="line">        <span class="hljs-comment"># 初始化</span></span><br><span class="line">        super(MyMainWindow, self).__init__(parent)</span><br><span class="line">        self.setupUi(self)</span><br><span class="line">        self.ip = self.host_ip()</span><br><span class="line">        self.listen_thread = <span class="hljs-literal">None</span></span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 按钮功能绑定</span></span><br><span class="line">        self.get_ip_button.clicked.connect(self.set_ip)</span><br><span class="line">        self.listen_button.clicked.connect(self.start_listen)</span><br><span class="line">        self.stop_button.clicked.connect(self.stop_connection)</span><br><span class="line">        self.exit_button.clicked.connect(self.close)</span><br></pre></td></tr></table></figure>
-
-<p>窗体类为多继承结构（此处继承了两个类，第一处继承是PyQt的主窗体类，第二处为我们的界面设计类），通过调用<code>setupUi</code>来引入设计中的各模块，下面四句则是按钮绑定，具体方法为<code>按钮.clicked.connect(响应函数)</code></p>
-<p>各种文本框的内容设计，一般放在窗体类的其它方法中，通过键盘输入、按钮或者线程活动进行内容变更。</p>
-<p>窗体的主要功能应该都放在窗体类中。</p>
-<h2 id="线程设计"><a href="#线程设计" class="headerlink" title="线程设计"></a>线程设计</h2><p>大多项目开发中，都绕不开线程的设计，PyQt中，有单独的线程类<code>QThread</code>，</p>
-<p>当然也可以使用Python中的线程类，<code>QThread</code>无疑是由Python中的基本线程改造而得，相必必有其优势，比如更好的配合PyQt的信号和槽机制。</p>
-<p><strong>信号和槽机制</strong>：简要介绍，就是在线程设计中，由于线程为单独的类，如何与窗体类进行信号交互呢，就是通过该机制，在线程类信号，窗体类中为槽，信息通过信号发射到槽内。</p>
-<h3 id="线程与槽的具体实现："><a href="#线程与槽的具体实现：" class="headerlink" title="线程与槽的具体实现："></a>线程与槽的具体实现：</h3><ol>
-<li>在线程类中设立传递信号的变量：如<code>msg = QtCore.pyqtSignal(str)</code>，msg即为该变量，看其它博客的案例，通常都是作为类变量，str表明传递的是字符串信息，也可以传递其它内容，比如我在开发中设计了一个传递自己定义的某类对象的信号变量</li>
-<li>传递信息：<code>self.msg.emit(传递信息内容)</code></li>
-<li>接受信息：在窗体类中，建立起线程后，可将文本框（或其它能接受信息的对象、变量或方法作为槽）作为槽，此处为<code>TextBrowser</code>对象，简单绑定即可，<code>self.listen_thread.msg.connect(self.textBrowser.append)</code>。此处，线程类名为<code>listen_thread</code>，括号内不是变量而是方法，（注：槽应该是<strong>方法名</strong>而不是变量，不加括号），最为关键的是<code>connect</code>这一方法，起着连接作用。</li>
+<p>近期的大作业和上机题，都是关于socket和界面设计的，由于几门语言中Python掌握的算可以一些，遂都选用Python来进行设计。对于界面开发，一番查询得知PyQt这一强大工具，便了解了一小段时间。</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>PyQt: Python的一个第三方库，可以进行GUI的开发工作，是Qt库（似乎是最强的GUI库了，不过服务于C++的，官方定位是Ｃ++ Framework）的Python实现（似乎不是Qt官方出品）</p>
+<p>借助PyQt强大的Qt库，再结合Python简练的语法，可以在短时间内做出功能完善的桌面端软件。</p>
+<h2 id="基本流程（不涉及编程细节）"><a href="#基本流程（不涉及编程细节）" class="headerlink" title="基本流程（不涉及编程细节）"></a>基本流程（不涉及编程细节）</h2><ol>
+<li>借助Qt Designer，利用拖拉拽的方式，设计出软件的界面，保存设计可生成ui文件</li>
+<li>利用PyUIC，可以将ui文件转为Python文件</li>
+<li>利用Python和PyQt语法（可能再结合其它库）进行编程，写出完备的代码</li>
+<li>利用pyinstaller，可将Python代码封装成可执行程序（Ubuntu或Windows软件都可生成），自此，完成了整个流程</li>
 </ol>
-<h3 id="线程创建和实例化："><a href="#线程创建和实例化：" class="headerlink" title="线程创建和实例化："></a>线程创建和实例化：</h3><p>创建线程必须继承自<code>QThread</code>类（或使用Python线程），可根据需求进行类变量设计和初始化方法的设计，主要功能代码放在<code>run</code>方法中，<code>run</code>方法是对<code>QThread</code>内方法的重载。</p>
-<p>实例化方法（此处线程名为<code>ListenThread</code>）：</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">listen_thread = ListenThread()</span><br><span class="line">listen_thread.start()</span><br></pre></td></tr></table></figure>
-
-<p>要顺利完成线程的使用，需着重注意的一个问题：线程中重载的方法是<code>run</code>，实例化线程运行的方法是<code>start</code>。</p>
+<p>其中PyUIC、Qt Designer都是随Anaconda装上的（Anaconda真是方便），pyinstaller自行pip安装一下即可，在Pycharm里可将PyUIC、Qt Designer都导进外部工具中，具体细节可自行看看CSDN上的博客。</p>
 
         </div>
         
@@ -239,10 +220,17 @@ var _hmt = _hmt || [];
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/11/04/各类技术/PyQt开发基本框架及线程/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">PyQt开发基本框架及线程</span>
+            </a>
+        </div>
+        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/10/30/GUI/利用PyQt写GUI的基本流程/">
-                <span class="level-item">利用PyQt写GUI的基本流程</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/10/27/个人/十月月记/">
+                <span class="level-item">十月月记</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -295,7 +283,7 @@ var _hmt = _hmt || [];
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        24
+                        28
                     </p>
                 </div>
             </div>
@@ -305,7 +293,7 @@ var _hmt = _hmt || [];
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        8
+                        9
                     </p>
                 </div>
             </div>
@@ -315,7 +303,7 @@ var _hmt = _hmt || [];
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        12
+                        13
                     </p>
                 </div>
             </div>
@@ -386,6 +374,14 @@ var _hmt = _hmt || [];
             </h3>
             <ul class="menu-list">
             <li>
+        <a class="level is-marginless" href="/categories/Git/">
+            <span class="level-start">
+                <span class="level-item">Git</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Java-JavaSE/">
             <span class="level-start">
                 <span class="level-item">Java-JavaSE</span>
@@ -415,7 +411,7 @@ var _hmt = _hmt || [];
                 <span class="level-item">周记</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">6</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/安卓/">
@@ -439,7 +435,7 @@ var _hmt = _hmt || [];
                 <span class="level-item">读书笔记</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">3</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/随笔/">
@@ -461,7 +457,7 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/BeautifulSoup库/" style="font-size: 10px;">BeautifulSoup库</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/PyQt/" style="font-size: 12.5px;">PyQt</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/requests库/" style="font-size: 10px;">requests库</a> <a href="/tags/re库/" style="font-size: 10px;">re库</a> <a href="/tags/个人/" style="font-size: 17.5px;">个人</a> <a href="/tags/周记/" style="font-size: 10px;">周记</a> <a href="/tags/安卓/" style="font-size: 12.5px;">安卓</a> <a href="/tags/网络爬虫/" style="font-size: 15px;">网络爬虫</a> <a href="/tags/读书笔记/" style="font-size: 12.5px;">读书笔记</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+        <a href="/tags/BeautifulSoup库/" style="font-size: 10px;">BeautifulSoup库</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/PyQt/" style="font-size: 12.5px;">PyQt</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/requests库/" style="font-size: 10px;">requests库</a> <a href="/tags/re库/" style="font-size: 10px;">re库</a> <a href="/tags/个人/" style="font-size: 20px;">个人</a> <a href="/tags/周记/" style="font-size: 10px;">周记</a> <a href="/tags/安卓/" style="font-size: 12.5px;">安卓</a> <a href="/tags/网络爬虫/" style="font-size: 15px;">网络爬虫</a> <a href="/tags/读书笔记/" style="font-size: 15px;">读书笔记</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
     </div>
 </div>
 
@@ -478,7 +474,83 @@ var _hmt = _hmt || [];
         
         <article class="media">
             
-            <a href="/2019/11/04/GUI/PyQt开发基本框架及线程/" class="media-left">
+            <a href="/2019/11/20/各类技术/Git笔记/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Git笔记">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-20T00:57:08.803Z">2019-11-20</time></div>
+                    <a href="/2019/11/20/各类技术/Git笔记/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Git笔记</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Git/">Git</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/20/个人/十一月周记（第三周）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="十一月周记（第三周）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-20T00:57:08.739Z">2019-11-20</time></div>
+                    <a href="/2019/11/20/个人/十一月周记（第三周）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">十一月周记（第三周）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/周记/">周记</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/09/个人/羊脂球/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="羊脂球">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-09T08:42:20.625Z">2019-11-09</time></div>
+                    <a href="/2019/11/09/个人/羊脂球/" class="title has-link-black-ter is-size-6 has-text-weight-normal">羊脂球</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/读书笔记/">读书笔记</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/05/个人/十一月周记（第一周）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="十一月周记（第一周）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-05T04:14:57.641Z">2019-11-05</time></div>
+                    <a href="/2019/11/05/个人/十一月周记（第一周）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">十一月周记（第一周）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/周记/">周记</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/04/各类技术/PyQt开发基本框架及线程/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="PyQt开发基本框架及线程">
                 </p>
@@ -487,85 +559,9 @@ var _hmt = _hmt || [];
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-04T05:09:03.509Z">2019-11-04</time></div>
-                    <a href="/2019/11/04/GUI/PyQt开发基本框架及线程/" class="title has-link-black-ter is-size-6 has-text-weight-normal">PyQt开发基本框架及线程</a>
+                    <a href="/2019/11/04/各类技术/PyQt开发基本框架及线程/" class="title has-link-black-ter is-size-6 has-text-weight-normal">PyQt开发基本框架及线程</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Python-GUI/">Python-GUI</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/10/30/GUI/利用PyQt写GUI的基本流程/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="利用PyQt写GUI的基本流程">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-30T15:14:32.874Z">2019-10-30</time></div>
-                    <a href="/2019/10/30/GUI/利用PyQt写GUI的基本流程/" class="title has-link-black-ter is-size-6 has-text-weight-normal">利用PyQt写GUI的基本流程</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Python-GUI/">Python-GUI</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/10/27/个人/十月月记/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="十月月记">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-27T02:59:40.685Z">2019-10-27</time></div>
-                    <a href="/2019/10/27/个人/十月月记/" class="title has-link-black-ter is-size-6 has-text-weight-normal">十月月记</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/月记/">月记</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/10/25/个人/十月周记（第四周）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="十月周记（第四周）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-25T05:37:25.532Z">2019-10-25</time></div>
-                    <a href="/2019/10/25/个人/十月周记（第四周）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">十月周记（第四周）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/周记/">周记</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/10/25/个人/十月周记（第三周）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="十月周记（第三周）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-25T04:08:25.336Z">2019-10-25</time></div>
-                    <a href="/2019/10/25/个人/十月周记（第三周）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">十月周记（第三周）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/周记/">周记</a>
                     </p>
                 </div>
             </div>
@@ -589,7 +585,7 @@ var _hmt = _hmt || [];
                     <span class="level-item">十一月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">5</span>
                 </span>
             </a>
         </li>
@@ -637,6 +633,13 @@ var _hmt = _hmt || [];
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Java/">
                         <span class="tag">Java</span>
                         <span class="tag is-grey">7</span>
@@ -674,7 +677,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/个人/">
                         <span class="tag">个人</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">7</span>
                     </a>
                 </div>
                 
@@ -702,7 +705,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/读书笔记/">
                         <span class="tag">读书笔记</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -738,7 +741,83 @@ var _hmt = _hmt || [];
         
         <article class="media">
             
-            <a href="/2019/11/04/GUI/PyQt开发基本框架及线程/" class="media-left">
+            <a href="/2019/11/20/各类技术/Git笔记/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Git笔记">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-20T00:57:08.803Z">2019-11-20</time></div>
+                    <a href="/2019/11/20/各类技术/Git笔记/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Git笔记</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Git/">Git</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/20/个人/十一月周记（第三周）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="十一月周记（第三周）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-20T00:57:08.739Z">2019-11-20</time></div>
+                    <a href="/2019/11/20/个人/十一月周记（第三周）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">十一月周记（第三周）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/周记/">周记</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/09/个人/羊脂球/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="羊脂球">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-09T08:42:20.625Z">2019-11-09</time></div>
+                    <a href="/2019/11/09/个人/羊脂球/" class="title has-link-black-ter is-size-6 has-text-weight-normal">羊脂球</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/读书笔记/">读书笔记</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/05/个人/十一月周记（第一周）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="十一月周记（第一周）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-05T04:14:57.641Z">2019-11-05</time></div>
+                    <a href="/2019/11/05/个人/十一月周记（第一周）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">十一月周记（第一周）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/周记/">周记</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/04/各类技术/PyQt开发基本框架及线程/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="PyQt开发基本框架及线程">
                 </p>
@@ -747,85 +826,9 @@ var _hmt = _hmt || [];
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-04T05:09:03.509Z">2019-11-04</time></div>
-                    <a href="/2019/11/04/GUI/PyQt开发基本框架及线程/" class="title has-link-black-ter is-size-6 has-text-weight-normal">PyQt开发基本框架及线程</a>
+                    <a href="/2019/11/04/各类技术/PyQt开发基本框架及线程/" class="title has-link-black-ter is-size-6 has-text-weight-normal">PyQt开发基本框架及线程</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Python-GUI/">Python-GUI</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/10/30/GUI/利用PyQt写GUI的基本流程/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="利用PyQt写GUI的基本流程">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-30T15:14:32.874Z">2019-10-30</time></div>
-                    <a href="/2019/10/30/GUI/利用PyQt写GUI的基本流程/" class="title has-link-black-ter is-size-6 has-text-weight-normal">利用PyQt写GUI的基本流程</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Python-GUI/">Python-GUI</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/10/27/个人/十月月记/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="十月月记">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-27T02:59:40.685Z">2019-10-27</time></div>
-                    <a href="/2019/10/27/个人/十月月记/" class="title has-link-black-ter is-size-6 has-text-weight-normal">十月月记</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/月记/">月记</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/10/25/个人/十月周记（第四周）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="十月周记（第四周）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-25T05:37:25.532Z">2019-10-25</time></div>
-                    <a href="/2019/10/25/个人/十月周记（第四周）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">十月周记（第四周）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/周记/">周记</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/10/25/个人/十月周记（第三周）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="十月周记（第三周）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-25T04:08:25.336Z">2019-10-25</time></div>
-                    <a href="/2019/10/25/个人/十月周记（第三周）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">十月周记（第三周）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/周记/">周记</a>
                     </p>
                 </div>
             </div>
@@ -849,7 +852,7 @@ var _hmt = _hmt || [];
                     <span class="level-item">十一月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">5</span>
                 </span>
             </a>
         </li>
@@ -897,6 +900,13 @@ var _hmt = _hmt || [];
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Java/">
                         <span class="tag">Java</span>
                         <span class="tag is-grey">7</span>
@@ -934,7 +944,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/个人/">
                         <span class="tag">个人</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">7</span>
                     </a>
                 </div>
                 
@@ -962,7 +972,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/读书笔记/">
                         <span class="tag">读书笔记</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -990,7 +1000,7 @@ var _hmt = _hmt || [];
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/favicon.svg" alt="PyQt开发基本框架及线程" height="28">
+                    <img src="/images/favicon.svg" alt="利用PyQt写GUI的基本流程" height="28">
                 
                 </a>
                 <p class="is-size-7">
