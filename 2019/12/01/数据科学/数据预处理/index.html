@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>标签: 随笔 - kkkchan</title>
+<title>数据预处理 - kkkchan</title>
 
 
 
@@ -54,26 +54,10 @@
 
     
     
+    
+        <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
 
-    
-    
-<script>
-var _hmt = _hmt || [];
-(function() {
-    var hm = document.createElement("script");
-    hm.src = "//hm.baidu.com/hm.js?https://hm.baidu.com/hm.js?30b2560cb49b99ca63f5576dfda66173";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
-    
-    
-<link rel="stylesheet" href="/css/progressbar.css">
-<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
-
-    
-    
     
 
 
@@ -85,7 +69,7 @@ var _hmt = _hmt || [];
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/favicon.svg" alt="kkkchan" height="28">
+                <img src="/images/favicon.svg" alt="数据预处理" height="28">
             
             </a>
         </div>
@@ -136,56 +120,71 @@ var _hmt = _hmt || [];
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">随笔</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-27T10:35:54.000Z">2019-09-27</time>
+                <time class="level-item has-text-grey" datetime="2019-12-01T06:53:58.000Z">2019-12-01</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/随笔/">随笔</a>
+                <a class="has-link-grey -link" href="/categories/数据科学/">数据科学</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    几秒 读完 (大约 50 个字)
+                    4 分钟 读完 (大约 607 个字)
                 </span>
                 
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
                 
             </div>
         </div>
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/09/27/个人/第一篇博客/">第一篇博客</a>
+                数据预处理
             
         </h1>
         <div class="content">
-            <p>喜提博客</p>
+            <p>从这篇文章开始，跟着Github上的100-Days-Of-ML-Code项目进行实践学习，途中结合其它资源。</p>
+<a id="more"></a>
+
+<h1 id="导入库"><a href="#导入库" class="headerlink" title="导入库"></a>导入库</h1><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd</span><br></pre></td></tr></table></figure>
+
+<h1 id="读数据-通常为csv文件"><a href="#读数据-通常为csv文件" class="headerlink" title="读数据(通常为csv文件)"></a>读数据(通常为csv文件)</h1><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dataset = pd.read_csv(<span class="hljs-string">'data.csv'</span>)</span><br><span class="line"><span class="hljs-comment"># pd.read_csv()返回类型为DataFrame，默认增加的行索引</span></span><br><span class="line">X = dataset.iloc[:, :<span class="hljs-number">-1</span>].values</span><br><span class="line"><span class="hljs-comment"># .iloc进行按位置序号索引，此处数据为二维，.values可将其转化成ndarray（即矩阵或者向量）</span></span><br><span class="line">Y = dataset.iloc[:, <span class="hljs-number">-1</span>].values</span><br></pre></td></tr></table></figure>
+
+<h1 id="处理丢失数据（nan，此处X中存在nan）："><a href="#处理丢失数据（nan，此处X中存在nan）：" class="headerlink" title="处理丢失数据（nan，此处X中存在nan）："></a>处理丢失数据（nan，此处X中存在nan）：</h1><p>利用<code>sklearn.impute库中</code>的<code>SimpleImputer</code></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.impute <span class="hljs-keyword">import</span> SimpleImputer</span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">参数及默认，mean意为以该列平均值进行填充</span></span><br><span class="line"><span class="hljs-string">SimpleImputer(missing_values=nan, strategy='mean',fill_value=None,verbose=0,copy=True,add_indicator=False)</span></span><br><span class="line"><span class="hljs-string">使用方法：定义、fit、transfrom</span></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line">imputer_mean = SimpleImputer() <span class="hljs-comment"># 默认值即可</span></span><br><span class="line">imputer = imputer_mean.fit(X[:, <span class="hljs-number">1</span>:]) <span class="hljs-comment"># 只能接受数值型数据，根据数据fit出应该填充的数据</span></span><br><span class="line">X[:, <span class="hljs-number">1</span>:<span class="hljs-number">3</span>] = imputer.transform(X[:, <span class="hljs-number">1</span>:]) <span class="hljs-comment"># 进行填充</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="解析分类数据"><a href="#解析分类数据" class="headerlink" title="解析分类数据"></a>解析分类数据</h1><p>对于分类结果，源数据常常为Yes或No，不适应计算，应将其转化为数字1或0，另外数据的部分输入属性也非数据，可转化成数据</p>
+<p>利用<code>sklearn.preprocessing</code>的<code>LabelEncoder, OneHotEncoder</code></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.preprocessing <span class="hljs-keyword">import</span> LabelEncoder</span><br><span class="line">le_y = LabelEncoder()</span><br><span class="line">Y = le_y.fit_transform(Y) <span class="hljs-comment"># fit_transform将fit和transform两操作结合起来</span></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">原本Y为</span></span><br><span class="line"><span class="hljs-string">['No', 'Yes', 'No', 'No', 'Yes', 'Yes', 'No', 'Yes', 'No', 'Yes']</span></span><br><span class="line"><span class="hljs-string">转换后为</span></span><br><span class="line"><span class="hljs-string">[0, 1, 0, 0, 1, 1, 0, 1, 0, 1]</span></span><br><span class="line"><span class="hljs-string">LabelEncoder().classes_保存着两者的对应表，此处的le_y.classes_为 ['No', 'Yes']</span></span><br><span class="line"><span class="hljs-string">'''</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="数据集拆分（成测试集和训练集）"><a href="#数据集拆分（成测试集和训练集）" class="headerlink" title="数据集拆分（成测试集和训练集）"></a>数据集拆分（成测试集和训练集）</h1><p>利用<code>sklearn.model_selection</code> 的<code>train_test_split()</code></p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split</span><br><span class="line">X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=<span class="hljs-number">0.2</span>, random_state=<span class="hljs-number">0</span>)</span><br><span class="line"><span class="hljs-comment"># test_size用于设置拆分比例，0.2即20%的训练集，可增加参数shuffle，用于设置拆分前是否对数据进行混洗，默认为True，random_state设置随机数种子</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="特征缩放"><a href="#特征缩放" class="headerlink" title="特征缩放"></a>特征缩放</h1><p>不同特征在幅度、取值范围、单位上变化很大。计算距离时，高幅度的特征比低幅度的特征占据更大权重。可通过特征标准化或Z值归一化进行处理，下面采用标准特征化（即让各个特征取值大小差不多）。</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.preprocessing <span class="hljs-keyword">import</span> StandardScaler</span><br><span class="line">sc_X = StandardScaler()</span><br><span class="line">X_train = sc_X.fit_transform(X_train)</span><br><span class="line">X_test = sc_X.fit_transform(X_test)</span><br></pre></td></tr></table></figure>
+
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/09/27/个人/第一篇博客/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/数据科学/">数据科学</a>
                 </div>
             </div>
         </div>
+        
         
         
     </div>
@@ -193,18 +192,77 @@ var _hmt = _hmt || [];
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/12/02/数据科学/一元线性回归/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">一元线性回归</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/12/01/各类技术/Markdown写LaTeX/">
+                <span class="level-item">Markdown写LaTeX</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'sRrUsO8VQXUpSJp2UKmNgJQT-gzGzoHsz',
+        app_key: 'heEPle3iGFbWqozrl0k5XYDy',
+        placeholder: 'Type something here...'
+    });
+</script>
+
+    </div>
+</div>
 </div>
                 
 
 
 
 
-<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
     
         
 <div class="card widget">
@@ -214,7 +272,7 @@ var _hmt = _hmt || [];
                 <div>
                     
                     <figure class="image is-128x128 has-mb-6">
-                        <img class="is-rounded" src="https://www.gravatar.com/avatar/2346976fa758b786730f5b9a3e9d11e7?s=128" alt="kkkchan">
+                        <img class="is-rounded" src="/images/kk.jpg" alt="kkkchan">
                     </figure>
                     
                     <p class="is-size-4 is-block">
@@ -242,7 +300,7 @@ var _hmt = _hmt || [];
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        34
+                        38
                     </p>
                 </div>
             </div>
@@ -252,7 +310,7 @@ var _hmt = _hmt || [];
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        10
+                        13
                     </p>
                 </div>
             </div>
@@ -297,6 +355,135 @@ var _hmt = _hmt || [];
         
     
         
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Java/">
+            <span class="level-start">
+                <span class="level-item">Java</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Java/SE/">
+            <span class="level-start">
+                <span class="level-item">SE</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Python/">
+            <span class="level-start">
+                <span class="level-item">Python</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Python/GUI/">
+            <span class="level-start">
+                <span class="level-item">GUI</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Python/网络爬虫/">
+            <span class="level-start">
+                <span class="level-item">网络爬虫</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/个人/">
+            <span class="level-start">
+                <span class="level-item">个人</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">16</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/个人/周记/">
+            <span class="level-start">
+                <span class="level-item">周记</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/个人/月记/">
+            <span class="level-start">
+                <span class="level-item">月记</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/个人/读书笔记/">
+            <span class="level-start">
+                <span class="level-item">读书笔记</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/各类技术/">
+            <span class="level-start">
+                <span class="level-item">各类技术</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/安卓/">
+            <span class="level-start">
+                <span class="level-item">安卓</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/数据科学/">
+            <span class="level-start">
+                <span class="level-item">数据科学</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/统计/">
+            <span class="level-start">
+                <span class="level-item">统计</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/BeautifulSoup库/" style="font-size: 10px;">BeautifulSoup库</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Java/" style="font-size: 18px;">Java</a> <a href="/tags/LaTeX/" style="font-size: 10px;">LaTeX</a> <a href="/tags/PyQt/" style="font-size: 12px;">PyQt</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/requests库/" style="font-size: 10px;">requests库</a> <a href="/tags/re库/" style="font-size: 10px;">re库</a> <a href="/tags/个人/" style="font-size: 20px;">个人</a> <a href="/tags/安卓/" style="font-size: 12px;">安卓</a> <a href="/tags/数据科学/" style="font-size: 12px;">数据科学</a> <a href="/tags/统计/" style="font-size: 14px;">统计</a> <a href="/tags/网络爬虫/" style="font-size: 14px;">网络爬虫</a> <a href="/tags/读书笔记/" style="font-size: 16px;">读书笔记</a>
+    </div>
+</div>
+
+    
+        
 
 <div class="card widget">
     <div class="card-content">
@@ -317,120 +504,48 @@ var _hmt = _hmt || [];
                 </a>
             </li>
         
-        </ul>
-        </div>
-    </div>
-</div>
-
-
-    
-        
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                分类
-            </h3>
-            <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Git/">
-            <span class="level-start">
-                <span class="level-item">Git</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Java-JavaSE/">
-            <span class="level-start">
-                <span class="level-item">Java-JavaSE</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">7</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Python-GUI/">
-            <span class="level-start">
-                <span class="level-item">Python-GUI</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Python-网络爬虫/">
-            <span class="level-start">
-                <span class="level-item">Python-网络爬虫</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">3</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/周记/">
-            <span class="level-start">
-                <span class="level-item">周记</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">8</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/安卓/">
-            <span class="level-start">
-                <span class="level-item">安卓</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/月记/">
-            <span class="level-start">
-                <span class="level-item">月记</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/统计/">
-            <span class="level-start">
-                <span class="level-item">统计</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/读书笔记/">
-            <span class="level-start">
-                <span class="level-item">读书笔记</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">5</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/随笔/">
-            <span class="level-start">
-                <span class="level-item">随笔</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li>
-            </ul>
+                <a class="level is-mobile" href="https://github.com" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Github</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://zhihu.com" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">知乎</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">zhihu.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://douban.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">豆瓣</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">douban.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
         </div>
     </div>
 </div>
-    
-        
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            标签云
-        </h3>
-        <a href="/tags/BeautifulSoup库/" style="font-size: 10px;">BeautifulSoup库</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Java/" style="font-size: 18px;">Java</a> <a href="/tags/PyQt/" style="font-size: 12px;">PyQt</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/requests库/" style="font-size: 10px;">requests库</a> <a href="/tags/re库/" style="font-size: 10px;">re库</a> <a href="/tags/个人/" style="font-size: 20px;">个人</a> <a href="/tags/周记/" style="font-size: 10px;">周记</a> <a href="/tags/安卓/" style="font-size: 12px;">安卓</a> <a href="/tags/统计/" style="font-size: 12px;">统计</a> <a href="/tags/网络爬虫/" style="font-size: 14px;">网络爬虫</a> <a href="/tags/读书笔记/" style="font-size: 16px;">读书笔记</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
-    </div>
-</div>
+
 
     
     
-        <div class="column-right-shadow is-hidden-widescreen ">
+        <div class="column-right-shadow is-hidden-widescreen is-sticky">
         
             
 <div class="card widget">
@@ -438,6 +553,63 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/12/02/数据科学/一元线性回归/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="一元线性回归">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-02T03:57:07.000Z">2019-12-02</time></div>
+                    <a href="/2019/12/02/数据科学/一元线性回归/" class="title has-link-black-ter is-size-6 has-text-weight-normal">一元线性回归</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/数据科学/">数据科学</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/01/数据科学/数据预处理/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="数据预处理">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-01T06:53:58.000Z">2019-12-01</time></div>
+                    <a href="/2019/12/01/数据科学/数据预处理/" class="title has-link-black-ter is-size-6 has-text-weight-normal">数据预处理</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/数据科学/">数据科学</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/01/各类技术/Markdown写LaTeX/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Markdown写LaTeX">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-01T03:34:44.000Z">2019-12-01</time></div>
+                    <a href="/2019/12/01/各类技术/Markdown写LaTeX/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Markdown写LaTeX</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/各类技术/">各类技术</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -452,7 +624,7 @@ var _hmt = _hmt || [];
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-29T07:27:28.000Z">2019-11-29</time></div>
                     <a href="/2019/11/29/个人/一只特立独行的猪/" class="title has-link-black-ter is-size-6 has-text-weight-normal">一只特立独行的猪</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/读书笔记/">读书笔记</a>
+                        <a class="has-link-grey -link" href="/categories/个人/">个人</a> / <a class="has-link-grey -link" href="/categories/个人/读书笔记/">读书笔记</a>
                     </p>
                 </div>
             </div>
@@ -471,64 +643,7 @@ var _hmt = _hmt || [];
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T11:37:31.000Z">2019-11-28</time></div>
                     <a href="/2019/11/28/个人/十一月（第五周）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">十一月（第五周）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/周记/">周记</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/11/26/统计/方差分析/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="方差分析">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-26T13:40:12.000Z">2019-11-26</time></div>
-                    <a href="/2019/11/26/统计/方差分析/" class="title has-link-black-ter is-size-6 has-text-weight-normal">方差分析</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/统计/">统计</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/11/21/统计/统计_intro/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="统计_intro">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-21T07:12:34.000Z">2019-11-21</time></div>
-                    <a href="/2019/11/21/统计/统计_intro/" class="title has-link-black-ter is-size-6 has-text-weight-normal">统计_intro</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/统计/">统计</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/11/21/个人/在细雨中呼喊/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="在细雨中呼喊">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-20T18:56:23.000Z">2019-11-21</time></div>
-                    <a href="/2019/11/21/个人/在细雨中呼喊/" class="title has-link-black-ter is-size-6 has-text-weight-normal">在细雨中呼喊</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/读书笔记/">读书笔记</a>
+                        <a class="has-link-grey -link" href="/categories/个人/">个人</a> / <a class="has-link-grey -link" href="/categories/个人/周记/">周记</a>
                     </p>
                 </div>
             </div>
@@ -547,12 +662,23 @@ var _hmt = _hmt || [];
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2019/11/">
                 <span class="level-start">
                     <span class="level-item">十一月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">11</span>
+                    <span class="level-item tag">12</span>
                 </span>
             </a>
         </li>
@@ -614,6 +740,13 @@ var _hmt = _hmt || [];
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/LaTeX/">
+                        <span class="tag">LaTeX</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/PyQt/">
                         <span class="tag">PyQt</span>
                         <span class="tag is-grey">2</span>
@@ -644,14 +777,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/个人/">
                         <span class="tag">个人</span>
-                        <span class="tag is-grey">9</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/周记/">
-                        <span class="tag">周记</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 
@@ -663,9 +789,16 @@ var _hmt = _hmt || [];
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/数据科学/">
+                        <span class="tag">数据科学</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/统计/">
                         <span class="tag">统计</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -683,13 +816,6 @@ var _hmt = _hmt || [];
                     </a>
                 </div>
                 
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/随笔/">
-                        <span class="tag">随笔</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
             </div>
         </div>
     </div>
@@ -704,7 +830,7 @@ var _hmt = _hmt || [];
 
 
 
-<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
     
         
 <div class="card widget">
@@ -712,6 +838,63 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/12/02/数据科学/一元线性回归/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="一元线性回归">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-02T03:57:07.000Z">2019-12-02</time></div>
+                    <a href="/2019/12/02/数据科学/一元线性回归/" class="title has-link-black-ter is-size-6 has-text-weight-normal">一元线性回归</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/数据科学/">数据科学</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/01/数据科学/数据预处理/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="数据预处理">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-01T06:53:58.000Z">2019-12-01</time></div>
+                    <a href="/2019/12/01/数据科学/数据预处理/" class="title has-link-black-ter is-size-6 has-text-weight-normal">数据预处理</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/数据科学/">数据科学</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/01/各类技术/Markdown写LaTeX/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Markdown写LaTeX">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-01T03:34:44.000Z">2019-12-01</time></div>
+                    <a href="/2019/12/01/各类技术/Markdown写LaTeX/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Markdown写LaTeX</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/各类技术/">各类技术</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -726,7 +909,7 @@ var _hmt = _hmt || [];
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-29T07:27:28.000Z">2019-11-29</time></div>
                     <a href="/2019/11/29/个人/一只特立独行的猪/" class="title has-link-black-ter is-size-6 has-text-weight-normal">一只特立独行的猪</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/读书笔记/">读书笔记</a>
+                        <a class="has-link-grey -link" href="/categories/个人/">个人</a> / <a class="has-link-grey -link" href="/categories/个人/读书笔记/">读书笔记</a>
                     </p>
                 </div>
             </div>
@@ -745,64 +928,7 @@ var _hmt = _hmt || [];
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T11:37:31.000Z">2019-11-28</time></div>
                     <a href="/2019/11/28/个人/十一月（第五周）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">十一月（第五周）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/周记/">周记</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/11/26/统计/方差分析/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="方差分析">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-26T13:40:12.000Z">2019-11-26</time></div>
-                    <a href="/2019/11/26/统计/方差分析/" class="title has-link-black-ter is-size-6 has-text-weight-normal">方差分析</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/统计/">统计</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/11/21/统计/统计_intro/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="统计_intro">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-21T07:12:34.000Z">2019-11-21</time></div>
-                    <a href="/2019/11/21/统计/统计_intro/" class="title has-link-black-ter is-size-6 has-text-weight-normal">统计_intro</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/统计/">统计</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/11/21/个人/在细雨中呼喊/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="在细雨中呼喊">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-20T18:56:23.000Z">2019-11-21</time></div>
-                    <a href="/2019/11/21/个人/在细雨中呼喊/" class="title has-link-black-ter is-size-6 has-text-weight-normal">在细雨中呼喊</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/读书笔记/">读书笔记</a>
+                        <a class="has-link-grey -link" href="/categories/个人/">个人</a> / <a class="has-link-grey -link" href="/categories/个人/周记/">周记</a>
                     </p>
                 </div>
             </div>
@@ -821,12 +947,23 @@ var _hmt = _hmt || [];
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2019/11/">
                 <span class="level-start">
                     <span class="level-item">十一月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">11</span>
+                    <span class="level-item tag">12</span>
                 </span>
             </a>
         </li>
@@ -888,6 +1025,13 @@ var _hmt = _hmt || [];
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/LaTeX/">
+                        <span class="tag">LaTeX</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/PyQt/">
                         <span class="tag">PyQt</span>
                         <span class="tag is-grey">2</span>
@@ -918,14 +1062,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/个人/">
                         <span class="tag">个人</span>
-                        <span class="tag is-grey">9</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/周记/">
-                        <span class="tag">周记</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 
@@ -937,9 +1074,16 @@ var _hmt = _hmt || [];
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/数据科学/">
+                        <span class="tag">数据科学</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/统计/">
                         <span class="tag">统计</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -954,13 +1098,6 @@ var _hmt = _hmt || [];
                     <a class="tags has-addons" href="/tags/读书笔记/">
                         <span class="tag">读书笔记</span>
                         <span class="tag is-grey">5</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/随笔/">
-                        <span class="tag">随笔</span>
-                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -981,13 +1118,18 @@ var _hmt = _hmt || [];
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/favicon.svg" alt="kkkchan" height="28">
+                    <img src="/images/favicon.svg" alt="数据预处理" height="28">
                 
                 </a>
                 <p class="is-size-7">
                 &copy; 2019 kkkchan&nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                <br>
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
                 
                 </p>
             </div>
@@ -1109,13 +1251,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     
     
+    
 
-    
-    
-    
-    
-    
-    
     
 
 
