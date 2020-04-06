@@ -155,15 +155,22 @@
         <div class="content">
             <p>Git学习笔记</p>
 <a id="more"></a>
+
 <h2 id="本地仓库常用操作"><a href="#本地仓库常用操作" class="headerlink" title="本地仓库常用操作"></a>本地仓库常用操作</h2><h3 id="初始化全局信息"><a href="#初始化全局信息" class="headerlink" title="初始化全局信息"></a>初始化全局信息</h3><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name "username" # 更改用户名 或 设置用户名</span><br><span class="line">git config --global user.email "emailaddress" # 更改用户邮件地址 或 设置用户邮件地址</span><br><span class="line">git config user.name	# 查看用户名</span><br><span class="line">git config user.email	# 查看用户邮件地址</span><br></pre></td></tr></table></figure>
+
 <h3 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h3><p>版本库：保存某群文件历史记录的仓库，可以利用版本库将文件恢复到任意想恢复的历史版本。版本库实际上是一个隐藏文件夹，文件夹名为<code>.git</code></p>
 <p>进入想创建版本库的文件夹，打开该文件夹目录</p>
 <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+
 <p>或者想在某处直接创建一个文件夹并建立版本库</p>
 <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir xx(文件夹名，精良用英文)</span><br><span class="line">cd xx</span><br><span class="line">pwd</span><br><span class="line">git init</span><br></pre></td></tr></table></figure>
+
 <h3 id="添加文件到Git版本库"><a href="#添加文件到Git版本库" class="headerlink" title="添加文件到Git版本库"></a>添加文件到Git版本库</h3><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add readme.txt # or some file name else，只是将本文存在stage(暂存区)</span><br><span class="line">git commit -m "append a readme file"  # 将文件提交至版本库，后面的字符串为提交信息</span><br></pre></td></tr></table></figure>
+
 <h3 id="查看版本中的状况并比较差别"><a href="#查看版本中的状况并比较差别" class="headerlink" title="查看版本中的状况并比较差别"></a>查看版本中的状况并比较差别</h3><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br><span class="line">git diff readme.txt   # 可返回版本库中与目前文件夹内readme.txt文件的差别</span><br></pre></td></tr></table></figure>
+
 <h3 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h3><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git log  # 查看版本记录</span><br><span class="line">git log --pretty=oneline</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> 相对版本回退</span></span><br><span class="line">git reset --hard HEAD^  # HEAD后跟上几个^就是向前回退多少个版本（相对次数回退），如果次数比较大，比如向前回退100个版本，写HEAD~100</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> 绝对版本回退</span></span><br><span class="line">git reset --hard 07e0   # 根据git log显示的版本记录，每个记录有一个哈希数字，找到对应版本哈希数字的前x位，用在此处，如07e0</span><br><span class="line">git reflog  # 这个指令记录了每一次版本相关的操作</span><br></pre></td></tr></table></figure>
+
 <h3 id="工作区与暂存区"><a href="#工作区与暂存区" class="headerlink" title="工作区与暂存区"></a>工作区与暂存区</h3><ul>
 <li><strong>工作区（Working Directory）：</strong><code>.git</code>所在的目录下，除了.git之外的其他文件都是在工作区内</li>
 <li><strong>版本库（Repository）：</strong><code>.git</code>目录内所存的记录，有暂存区和Git为我们自动创建的第一个分支master，以及指向master的一个指针叫HEAD。</li>
@@ -172,20 +179,28 @@
 <p><img src="https://s2.ax1x.com/2019/12/02/QnYPUA.jpg" alt></p>
 <p>经过<code>add</code>添加的文件只会添加到<code>stage</code>，需要再次操作（<code>commit</code>，即提交）才能放到版本库，相当于需要二次确认操作才能完成版本添加。</p>
 <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git diff  # 如果不加参数则默认比较工作区与暂存区</span><br><span class="line">git diff --cached [&lt;path&gt;...] # 比较暂存区与最新版本库</span><br><span class="line">git diff HEAD [&lt;path&gt;...] # 比较工作区和最新版本库</span><br></pre></td></tr></table></figure>
+
 <h3 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h3><p>对于存到暂存区的文件，如果不想提交到版本库，可以尝试撤销。或者工作区的文件修改后，希望撤销该修改。</p>
 <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -- test.txt  # --不能省略，后面后加具体文件或者正则式匹配，作用是撤销工作区文件修改</span><br><span class="line">git reset HEAD # 对于已经存到暂存区的文件，根据git status的提示进行撤销</span><br></pre></td></tr></table></figure>
+
 <p>对于已经存在版本库的版本文件，可以利用版本回退进行处理。</p>
 <h3 id="文件删除"><a href="#文件删除" class="headerlink" title="文件删除"></a>文件删除</h3><p>文件删除命令同Linux下操作（毕竟Linux内核和Git都是一个人做出来的）</p>
 <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm readme.md</span><br></pre></td></tr></table></figure>
+
 <h2 id="远程仓库常用操作"><a href="#远程仓库常用操作" class="headerlink" title="远程仓库常用操作"></a>远程仓库常用操作</h2><p>首先是本地SSH的创建和与远程仓库（如GitHub、阿里Code等）账号的SSH绑定（具体百度）</p>
 <h3 id="连接远程仓库"><a href="#连接远程仓库" class="headerlink" title="连接远程仓库"></a>连接远程仓库</h3><p>在远程创建一个空仓库（不含readme文件）后，通过以下指令进行连接</p>
 <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin xxxx  # 后面的xxxx为具体网址，http或者ssh，origin为在本地自定义的仓库名</span><br></pre></td></tr></table></figure>
+
 <h3 id="下载或拉取远程仓库文件"><a href="#下载或拉取远程仓库文件" class="headerlink" title="下载或拉取远程仓库文件"></a>下载或拉取远程仓库文件</h3><p>如果远程仓库已经有文件，则只能先下载下来，或者拉取下来</p>
 <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone xxxx</span><br><span class="line">git pull origin master # 如果报错可以在后面加上参数--allow-unrelated-histories</span><br></pre></td></tr></table></figure>
+
 <h3 id="将本地文件推送到远程"><a href="#将本地文件推送到远程" class="headerlink" title="将本地文件推送到远程"></a>将本地文件推送到远程</h3><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master  # -u是指定后面的的仓库名和分支名为默认，之后便可直接用git push</span><br></pre></td></tr></table></figure>
+
 <h3 id="与远程仓库解除绑定"><a href="#与远程仓库解除绑定" class="headerlink" title="与远程仓库解除绑定"></a>与远程仓库解除绑定</h3><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote remove origin</span><br></pre></td></tr></table></figure>
+
 <p>修改绑定的远程库</p>
 <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote set-url origin xxxx</span><br></pre></td></tr></table></figure>
+
 <h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h2><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git branch  # 查看分支，显示结果中前面标有*号的是目前所处分支</span><br><span class="line">git -b checkout dev  # 增加并切换到名为dev的分支</span><br><span class="line">git merge dev # 合并dev分支到目前所处的分支（若出现冲突需要先根据提示进行修改）</span><br><span class="line">git branch -d dev  # 删除dev分支</span><br><span class="line">git log --graph --pretty=oneline --abbrev-commit  # 图形化分支显示</span><br></pre></td></tr></table></figure>
         </div>
         
@@ -313,7 +328,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        47
+                        58
                     </p>
                 </div>
             </div>
@@ -323,7 +338,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        16
+                        13
                     </p>
                 </div>
             </div>
@@ -333,7 +348,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        18
+                        20
                     </p>
                 </div>
             </div>
@@ -383,53 +398,21 @@
             <span class="level-end">
                 <span class="level-item tag">7</span>
             </span>
-        </a><ul><li>
-        <a class="level is-marginless" href="/categories/Java/SE/">
-            <span class="level-start">
-                <span class="level-item">SE</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">7</span>
-            </span>
-        </a></li></ul></li><li>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Python/">
             <span class="level-start">
                 <span class="level-item">Python</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">6</span>
-            </span>
-        </a><ul><li>
-        <a class="level is-marginless" href="/categories/Python/GUI/">
-            <span class="level-start">
-                <span class="level-item">GUI</span>
-            </span>
-            <span class="level-end">
                 <span class="level-item tag">2</span>
             </span>
         </a></li><li>
-        <a class="level is-marginless" href="/categories/Python/网络爬虫/">
-            <span class="level-start">
-                <span class="level-item">网络爬虫</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">3</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Python/语法/">
-            <span class="level-start">
-                <span class="level-item">语法</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/个人/">
             <span class="level-start">
                 <span class="level-item">个人</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">20</span>
+                <span class="level-item tag">23</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/个人/周记/">
@@ -453,31 +436,15 @@
                 <span class="level-item">读书笔记</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">6</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li></ul></li><li>
-        <a class="level is-marginless" href="/categories/前端/">
-            <span class="level-start">
-                <span class="level-item">前端</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/各类技术/">
             <span class="level-start">
                 <span class="level-item">各类技术</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/安卓/">
-            <span class="level-start">
-                <span class="level-item">安卓</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">7</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/数据科学/">
@@ -485,12 +452,28 @@
                 <span class="level-item">数据科学</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/矩阵/">
+            <span class="level-start">
+                <span class="level-item">矩阵</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/统计/">
             <span class="level-start">
                 <span class="level-item">统计</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/网络爬虫/">
+            <span class="level-start">
+                <span class="level-item">网络爬虫</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">3</span>
@@ -502,6 +485,14 @@
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/设计模式/">
+            <span class="level-start">
+                <span class="level-item">设计模式</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
             </span>
         </a></li>
             </ul>
@@ -515,7 +506,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/BeautifulSoup库/" style="font-size: 10px;">BeautifulSoup库</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Java/" style="font-size: 18.57px;">Java</a> <a href="/tags/LaTeX/" style="font-size: 10px;">LaTeX</a> <a href="/tags/PyQt/" style="font-size: 11.43px;">PyQt</a> <a href="/tags/Python/" style="font-size: 15.71px;">Python</a> <a href="/tags/requests库/" style="font-size: 10px;">requests库</a> <a href="/tags/re库/" style="font-size: 10px;">re库</a> <a href="/tags/个人/" style="font-size: 20px;">个人</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/周记/" style="font-size: 10px;">周记</a> <a href="/tags/安卓/" style="font-size: 11.43px;">安卓</a> <a href="/tags/数据科学/" style="font-size: 14.29px;">数据科学</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/统计/" style="font-size: 12.86px;">统计</a> <a href="/tags/网络爬虫/" style="font-size: 12.86px;">网络爬虫</a> <a href="/tags/论文阅读/" style="font-size: 10px;">论文阅读</a> <a href="/tags/读书笔记/" style="font-size: 17.14px;">读书笔记</a>
+        <a href="/tags/BeautifulSoup库/" style="font-size: 10px;">BeautifulSoup库</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Java/" style="font-size: 17.14px;">Java</a> <a href="/tags/LaTeX/" style="font-size: 10px;">LaTeX</a> <a href="/tags/PyQt/" style="font-size: 11.43px;">PyQt</a> <a href="/tags/Python/" style="font-size: 15.71px;">Python</a> <a href="/tags/requests库/" style="font-size: 10px;">requests库</a> <a href="/tags/re库/" style="font-size: 10px;">re库</a> <a href="/tags/个人/" style="font-size: 20px;">个人</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/周记/" style="font-size: 10px;">周记</a> <a href="/tags/安卓/" style="font-size: 11.43px;">安卓</a> <a href="/tags/数据科学/" style="font-size: 15.71px;">数据科学</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/矩阵/" style="font-size: 10px;">矩阵</a> <a href="/tags/统计/" style="font-size: 11.43px;">统计</a> <a href="/tags/网络爬虫/" style="font-size: 12.86px;">网络爬虫</a> <a href="/tags/论文阅读/" style="font-size: 10px;">论文阅读</a> <a href="/tags/设计模式/" style="font-size: 14.29px;">设计模式</a> <a href="/tags/读书笔记/" style="font-size: 18.57px;">读书笔记</a>
     </div>
 </div>
 
@@ -593,18 +584,18 @@
         
         <article class="media">
             
-            <a href="/2019/12/21/前端/HTML笔记/" class="media-left">
+            <a href="/2020/03/29/数据科学/主成分分析/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="HTML笔记">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="主成分分析">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-21T07:56:03.000Z">2019-12-21</time></div>
-                    <a href="/2019/12/21/前端/HTML笔记/" class="title has-link-black-ter is-size-6 has-text-weight-normal">HTML笔记</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-29T09:09:21.000Z">2020-03-29</time></div>
+                    <a href="/2020/03/29/数据科学/主成分分析/" class="title has-link-black-ter is-size-6 has-text-weight-normal">主成分分析</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/前端/">前端</a>
+                        <a class="has-link-grey -link" href="/categories/数据科学/">数据科学</a>
                     </p>
                 </div>
             </div>
@@ -612,18 +603,18 @@
         
         <article class="media">
             
-            <a href="/2019/12/20/个人/十二月（第三周）/" class="media-left">
+            <a href="/2020/03/08/设计模式/模板方法模式&MVC复合模式/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="十二月（第三周）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="模板方法模式&amp;MVC复合模式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-20T14:01:09.000Z">2019-12-20</time></div>
-                    <a href="/2019/12/20/个人/十二月（第三周）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">十二月（第三周）</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-08T13:26:21.000Z">2020-03-08</time></div>
+                    <a href="/2020/03/08/设计模式/模板方法模式&MVC复合模式/" class="title has-link-black-ter is-size-6 has-text-weight-normal">模板方法模式&amp;MVC复合模式</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/个人/">个人</a> / <a class="has-link-grey -link" href="/categories/个人/周记/">周记</a>
+                        <a class="has-link-grey -link" href="/categories/设计模式/">设计模式</a>
                     </p>
                 </div>
             </div>
@@ -631,18 +622,18 @@
         
         <article class="media">
             
-            <a href="/2019/12/20/个人/冬泳/" class="media-left">
+            <a href="/2020/03/08/设计模式/观察者模式&命令模式/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="冬泳">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="观察者模式&amp;命令模式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-19T18:32:20.000Z">2019-12-20</time></div>
-                    <a href="/2019/12/20/个人/冬泳/" class="title has-link-black-ter is-size-6 has-text-weight-normal">冬泳</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-08T08:49:49.000Z">2020-03-08</time></div>
+                    <a href="/2020/03/08/设计模式/观察者模式&命令模式/" class="title has-link-black-ter is-size-6 has-text-weight-normal">观察者模式&amp;命令模式</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/个人/">个人</a> / <a class="has-link-grey -link" href="/categories/个人/读书笔记/">读书笔记</a>
+                        <a class="has-link-grey -link" href="/categories/设计模式/">设计模式</a>
                     </p>
                 </div>
             </div>
@@ -650,18 +641,18 @@
         
         <article class="media">
             
-            <a href="/2019/12/17/论文阅读/论文阅读（A surbey on network embedding）/" class="media-left">
+            <a href="/2020/03/06/设计模式/门面模式（外观模式，facade）&代理模式/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="论文阅读（A surbey on network embedding）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="门面模式（外观模式，facade）&amp;代理模式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-17T00:48:22.000Z">2019-12-17</time></div>
-                    <a href="/2019/12/17/论文阅读/论文阅读（A surbey on network embedding）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">论文阅读（A surbey on network embedding）</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-06T14:18:02.000Z">2020-03-06</time></div>
+                    <a href="/2020/03/06/设计模式/门面模式（外观模式，facade）&代理模式/" class="title has-link-black-ter is-size-6 has-text-weight-normal">门面模式（外观模式，facade）&amp;代理模式</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/论文阅读/">论文阅读</a>
+                        <a class="has-link-grey -link" href="/categories/设计模式/">设计模式</a>
                     </p>
                 </div>
             </div>
@@ -669,18 +660,18 @@
         
         <article class="media">
             
-            <a href="/2019/12/14/个人/十二月（第二周）/" class="media-left">
+            <a href="/2020/03/06/设计模式/单例模式&工厂模式/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="十二月（第二周）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="单例模式&amp;工厂模式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-14T13:45:00.000Z">2019-12-14</time></div>
-                    <a href="/2019/12/14/个人/十二月（第二周）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">十二月（第二周）</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-06T13:10:36.000Z">2020-03-06</time></div>
+                    <a href="/2020/03/06/设计模式/单例模式&工厂模式/" class="title has-link-black-ter is-size-6 has-text-weight-normal">单例模式&amp;工厂模式</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/个人/">个人</a> / <a class="has-link-grey -link" href="/categories/个人/周记/">周记</a>
+                        <a class="has-link-grey -link" href="/categories/设计模式/">设计模式</a>
                     </p>
                 </div>
             </div>
@@ -699,12 +690,45 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2019/12/">
                 <span class="level-start">
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">12</span>
+                    <span class="level-item tag">13</span>
                 </span>
             </a>
         </li>
@@ -715,7 +739,7 @@
                     <span class="level-item">十一月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">12</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -793,7 +817,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Python/">
                         <span class="tag">Python</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -814,7 +838,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/个人/">
                         <span class="tag">个人</span>
-                        <span class="tag is-grey">13</span>
+                        <span class="tag is-grey">14</span>
                     </a>
                 </div>
                 
@@ -842,7 +866,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/数据科学/">
                         <span class="tag">数据科学</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -854,9 +878,16 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/矩阵/">
+                        <span class="tag">矩阵</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/统计/">
                         <span class="tag">统计</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -875,9 +906,16 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/设计模式/">
+                        <span class="tag">设计模式</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/读书笔记/">
                         <span class="tag">读书笔记</span>
-                        <span class="tag is-grey">6</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 
@@ -906,18 +944,18 @@
         
         <article class="media">
             
-            <a href="/2019/12/21/前端/HTML笔记/" class="media-left">
+            <a href="/2020/03/29/数据科学/主成分分析/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="HTML笔记">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="主成分分析">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-21T07:56:03.000Z">2019-12-21</time></div>
-                    <a href="/2019/12/21/前端/HTML笔记/" class="title has-link-black-ter is-size-6 has-text-weight-normal">HTML笔记</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-29T09:09:21.000Z">2020-03-29</time></div>
+                    <a href="/2020/03/29/数据科学/主成分分析/" class="title has-link-black-ter is-size-6 has-text-weight-normal">主成分分析</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/前端/">前端</a>
+                        <a class="has-link-grey -link" href="/categories/数据科学/">数据科学</a>
                     </p>
                 </div>
             </div>
@@ -925,18 +963,18 @@
         
         <article class="media">
             
-            <a href="/2019/12/20/个人/十二月（第三周）/" class="media-left">
+            <a href="/2020/03/08/设计模式/模板方法模式&MVC复合模式/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="十二月（第三周）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="模板方法模式&amp;MVC复合模式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-20T14:01:09.000Z">2019-12-20</time></div>
-                    <a href="/2019/12/20/个人/十二月（第三周）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">十二月（第三周）</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-08T13:26:21.000Z">2020-03-08</time></div>
+                    <a href="/2020/03/08/设计模式/模板方法模式&MVC复合模式/" class="title has-link-black-ter is-size-6 has-text-weight-normal">模板方法模式&amp;MVC复合模式</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/个人/">个人</a> / <a class="has-link-grey -link" href="/categories/个人/周记/">周记</a>
+                        <a class="has-link-grey -link" href="/categories/设计模式/">设计模式</a>
                     </p>
                 </div>
             </div>
@@ -944,18 +982,18 @@
         
         <article class="media">
             
-            <a href="/2019/12/20/个人/冬泳/" class="media-left">
+            <a href="/2020/03/08/设计模式/观察者模式&命令模式/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="冬泳">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="观察者模式&amp;命令模式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-19T18:32:20.000Z">2019-12-20</time></div>
-                    <a href="/2019/12/20/个人/冬泳/" class="title has-link-black-ter is-size-6 has-text-weight-normal">冬泳</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-08T08:49:49.000Z">2020-03-08</time></div>
+                    <a href="/2020/03/08/设计模式/观察者模式&命令模式/" class="title has-link-black-ter is-size-6 has-text-weight-normal">观察者模式&amp;命令模式</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/个人/">个人</a> / <a class="has-link-grey -link" href="/categories/个人/读书笔记/">读书笔记</a>
+                        <a class="has-link-grey -link" href="/categories/设计模式/">设计模式</a>
                     </p>
                 </div>
             </div>
@@ -963,18 +1001,18 @@
         
         <article class="media">
             
-            <a href="/2019/12/17/论文阅读/论文阅读（A surbey on network embedding）/" class="media-left">
+            <a href="/2020/03/06/设计模式/门面模式（外观模式，facade）&代理模式/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="论文阅读（A surbey on network embedding）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="门面模式（外观模式，facade）&amp;代理模式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-17T00:48:22.000Z">2019-12-17</time></div>
-                    <a href="/2019/12/17/论文阅读/论文阅读（A surbey on network embedding）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">论文阅读（A surbey on network embedding）</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-06T14:18:02.000Z">2020-03-06</time></div>
+                    <a href="/2020/03/06/设计模式/门面模式（外观模式，facade）&代理模式/" class="title has-link-black-ter is-size-6 has-text-weight-normal">门面模式（外观模式，facade）&amp;代理模式</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/论文阅读/">论文阅读</a>
+                        <a class="has-link-grey -link" href="/categories/设计模式/">设计模式</a>
                     </p>
                 </div>
             </div>
@@ -982,18 +1020,18 @@
         
         <article class="media">
             
-            <a href="/2019/12/14/个人/十二月（第二周）/" class="media-left">
+            <a href="/2020/03/06/设计模式/单例模式&工厂模式/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="十二月（第二周）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="单例模式&amp;工厂模式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-14T13:45:00.000Z">2019-12-14</time></div>
-                    <a href="/2019/12/14/个人/十二月（第二周）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">十二月（第二周）</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-06T13:10:36.000Z">2020-03-06</time></div>
+                    <a href="/2020/03/06/设计模式/单例模式&工厂模式/" class="title has-link-black-ter is-size-6 has-text-weight-normal">单例模式&amp;工厂模式</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/个人/">个人</a> / <a class="has-link-grey -link" href="/categories/个人/周记/">周记</a>
+                        <a class="has-link-grey -link" href="/categories/设计模式/">设计模式</a>
                     </p>
                 </div>
             </div>
@@ -1012,12 +1050,45 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2019/12/">
                 <span class="level-start">
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">12</span>
+                    <span class="level-item tag">13</span>
                 </span>
             </a>
         </li>
@@ -1028,7 +1099,7 @@
                     <span class="level-item">十一月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">12</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -1106,7 +1177,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Python/">
                         <span class="tag">Python</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -1127,7 +1198,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/个人/">
                         <span class="tag">个人</span>
-                        <span class="tag is-grey">13</span>
+                        <span class="tag is-grey">14</span>
                     </a>
                 </div>
                 
@@ -1155,7 +1226,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/数据科学/">
                         <span class="tag">数据科学</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -1167,9 +1238,16 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/矩阵/">
+                        <span class="tag">矩阵</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/统计/">
                         <span class="tag">统计</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1188,9 +1266,16 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/设计模式/">
+                        <span class="tag">设计模式</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/读书笔记/">
                         <span class="tag">读书笔记</span>
-                        <span class="tag is-grey">6</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 
