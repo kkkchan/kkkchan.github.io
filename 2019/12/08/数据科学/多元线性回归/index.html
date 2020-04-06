@@ -155,42 +155,27 @@
         <div class="content">
             <p>只做简要介绍和理解</p>
 <a id="more"></a>
-
 <h1 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h1><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>与一元线性回归基本类似，只是对变量进行了扩充，在表达式向量化之后可写成与一元线性回归相同的形式。</p>
 <p>由于所含参数、下标（分量）较多，首先得<strong>形式化定义问题</strong>。</p>
 <p>下式为多元线性回归数学模型，式中$x,w$分别为自变量（特征），参数（权重）的向量值，(设向量长度为$m$)：</p>
-<p>$$y = xw^T$$</p>
-<p>$$x=（x_1,x_2,\cdots,x_m)^T;\ w = (w_i, w_2,\cdots,w_m)^T$$</p>
-<p>设给定样本组数为$n$，对于自变量和因变量的随机变量，设为$X,Y$，单个样本为：</p>
-<p>$$(X_i, Y_i),i=1,\cdots,n$$</p>
-<p>单个样本的单个分量为（第$i$个样本的第$j$个分量，之后的式子中<strong>$i$表示样本序号，$j$表示单个样本的分量值序号</strong>，$Y$为单分量数据，即$Y\in \mathbb{R}$）:</p>
-<p>$$X_{ij}$$</p>
-<p>损失（误差）函数定义如下：</p>
-<p>$$L = \frac{1}{2}MSE = \frac{1}{2}\sum_{i=1}^{m}(Y_i-X_iw^T)^2$$</p>
-<p>对上式子损失进行向量化（向量化思维非常重要，能极大简单求解过程，最右侧为$L_2$范数）：</p>
-<p>$$L=\frac{1}{2}(Y-Xw)^T(Y-Xw)=\frac{1}{2} ||Y-Xa||_2$$</p>
-<p>注：</p>
+<script type="math/tex; mode=display">y = xw^T</script><script type="math/tex; mode=display">x=（x_1,x_2,\cdots,x_m)^T;\ w = (w_i, w_2,\cdots,w_m)^T</script><p>设给定样本组数为$n$，对于自变量和因变量的随机变量，设为$X,Y$，单个样本为：</p>
+<script type="math/tex; mode=display">(X_i, Y_i),i=1,\cdots,n</script><p>单个样本的单个分量为（第$i$个样本的第$j$个分量，之后的式子中<strong>$i$表示样本序号，$j$表示单个样本的分量值序号</strong>，$Y$为单分量数据，即$Y\in \mathbb{R}$）:</p>
+<script type="math/tex; mode=display">X_{ij}</script><p>损失（误差）函数定义如下：</p>
+<script type="math/tex; mode=display">L = \frac{1}{2}MSE = \frac{1}{2}\sum_{i=1}^{m}(Y_i-X_iw^T)^2</script><p>对上式子损失进行向量化（向量化思维非常重要，能极大简单求解过程，最右侧为$L_2$范数）：</p>
+<script type="math/tex; mode=display">L=\frac{1}{2}(Y-Xw)^T(Y-Xw)=\frac{1}{2} ||Y-Xa||_2</script><p>注：</p>
 <ol>
 <li><p>损失函数乘上二分之一没有特别意义，只是为了求导之后没有常系数</p>
 </li>
 <li><p>$X,Y$的完整矩阵（向量）结构如下：</p>
 </li>
 </ol>
-<p>$$X= \left{ \begin{matrix}   X_{11} &amp; X_{12} &amp; \cdots &amp; X_{1m}\   X_{21} &amp; X_{22} &amp; \cdots &amp; X_{2m} \   \vdots &amp; \vdots &amp; \ddots &amp; \vdots \   X_n1 &amp; X_{n2} &amp; \cdots &amp; X_{nm}  \end{matrix}  \right} $$</p>
-<p>$$Y = (Y_1,Y_2, \cdots, Y_n)$$</p>
-<h2 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h2><p>对损失函数求导，令偏导为$0$，解参数$w$:</p>
-<p>$$\frac{\partial L}{\partial w} = X^T(Y-Xw) =0$$</p>
-<p>$$X^TY=X^TXw$$</p>
-<p>$$w = (X^TX)^{-1}X^TY$$</p>
-<p>注：也可通过梯度下降进行求解</p>
-<h2 id="引伸（也可称为正则化手段）"><a href="#引伸（也可称为正则化手段）" class="headerlink" title="引伸（也可称为正则化手段）"></a>引伸（也可称为正则化手段）</h2><h3 id="Ridge-Regression（岭回归、脊回归）"><a href="#Ridge-Regression（岭回归、脊回归）" class="headerlink" title="Ridge Regression（岭回归、脊回归）"></a>Ridge Regression（岭回归、脊回归）</h3><p>上面的求解结果中，$$Ｘ^TX$$可能不可逆，解决办法，给原始损失函数加上一个惩罚项（<strong>二范数</strong>）：</p>
-<p>$$L = \frac{1}{2}\sum_{i=1}^{n}(Y_i-X_i^Tw) + \frac{1}{2}\lambda w^Tw$$</p>
-<p>则求偏导解得：</p>
-<p>$$w = (X^TX+\lambda I_m)^{-1}XY$$</p>
-<p>其中$$X^TX$$为半正定矩阵， $$\lambda I_m$$为正定矩阵，两者相加为正定矩阵，可逆</p>
+<script type="math/tex; mode=display">X= \left\{ \begin{matrix}   X_{11} & X_{12} & \cdots & X_{1m}\\   X_{21} & X_{22} & \cdots & X_{2m} \\   \vdots & \vdots & \ddots & \vdots \\   X_n1 & X_{n2} & \cdots & X_{nm}  \end{matrix}  \right\}</script><script type="math/tex; mode=display">Y = (Y_1,Y_2, \cdots, Y_n)</script><h2 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h2><p>对损失函数求导，令偏导为$0$，解参数$w$:</p>
+<script type="math/tex; mode=display">\frac{\partial L}{\partial w} = X^T(Y-Xw) =0</script><script type="math/tex; mode=display">X^TY=X^TXw</script><script type="math/tex; mode=display">w = (X^TX)^{-1}X^TY</script><p>注：也可通过梯度下降进行求解</p>
+<h2 id="引伸（也可称为正则化手段）"><a href="#引伸（也可称为正则化手段）" class="headerlink" title="引伸（也可称为正则化手段）"></a>引伸（也可称为正则化手段）</h2><h3 id="Ridge-Regression（岭回归、脊回归）"><a href="#Ridge-Regression（岭回归、脊回归）" class="headerlink" title="Ridge Regression（岭回归、脊回归）"></a>Ridge Regression（岭回归、脊回归）</h3><p>上面的求解结果中，<script type="math/tex">Ｘ^TX</script>可能不可逆，解决办法，给原始损失函数加上一个惩罚项（<strong>二范数</strong>）：</p>
+<script type="math/tex; mode=display">L = \frac{1}{2}\sum_{i=1}^{n}(Y_i-X_i^Tw) + \frac{1}{2}\lambda w^Tw</script><p>则求偏导解得：</p>
+<script type="math/tex; mode=display">w = (X^TX+\lambda I_m)^{-1}XY</script><p>其中<script type="math/tex">X^TX</script>为半正定矩阵， <script type="math/tex">\lambda I_m</script>为正定矩阵，两者相加为正定矩阵，可逆</p>
 <h3 id="Lasso"><a href="#Lasso" class="headerlink" title="Lasso"></a>Lasso</h3><p>损失函数加上<strong>一范数</strong>（绝对值）的惩罚项</p>
-<p>$$L = \frac{1}{2}\sum_{i=1}^n(Y_i - X_i^Tw)+\frac{1}{2}\lambda ||a||_1$$</p>
-<p>此时，所得参数$a$的部分分量值为$0$，带来的好处：<strong>能消掉部分无关特征</strong></p>
+<script type="math/tex; mode=display">L = \frac{1}{2}\sum_{i=1}^n(Y_i - X_i^Tw)+\frac{1}{2}\lambda ||a||_1</script><p>此时，所得参数$a$的部分分量值为$0$，带来的好处：<strong>能消掉部分无关特征</strong></p>
 <h3 id="Elastic-Net"><a href="#Elastic-Net" class="headerlink" title="Elastic Net"></a>Elastic Net</h3><p>惩罚项<strong>既有一范数又有二范数</strong>。一范数能带来稀疏，二范数能带来计算便利和求导。此处知识点待了解。</p>
 <h1 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h1><p>操作基本同一元线性回归，同一个API，毕竟<code>LinearRegression</code>就是针对所有线性回归情况，样本读取和数据拆分略过。调用、fit、预测如下：</p>
 <figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn.linear_model <span class="hljs-keyword">import</span> LinearRegression</span><br><span class="line">regressor = LinearRegression()</span><br><span class="line">regressor.fit(X_train, Y_train)</span><br><span class="line">Y_pred = regressor.predict(X_test)</span><br></pre></td></tr></table></figure>
@@ -1222,7 +1207,7 @@
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 kkkchan&nbsp;
+                &copy; 2020 kkkchan&nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                 

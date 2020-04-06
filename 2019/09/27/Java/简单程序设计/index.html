@@ -155,13 +155,11 @@
         <div class="content">
             <p>基操</p>
 <a id="more"></a>
-
 <h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><h3 id="包的导入"><a href="#包的导入" class="headerlink" title="包的导入"></a>包的导入</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//import有两种导入</span></span><br><span class="line"><span class="hljs-keyword">import</span> java.util.Scanner;  <span class="hljs-comment">//明确导入</span></span><br><span class="line"><span class="hljs-keyword">import</span> java.util.*;  <span class="hljs-comment">//通配符导入</span></span><br></pre></td></tr></table></figure>
-
 <p>同一个module下的Java文件无需引用即可使用</p>
 <h3 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//输入</span></span><br><span class="line">Scanner input = <span class="hljs-keyword">new</span> Scanner(System.in);    <span class="hljs-comment">//Scanner类在包java.util.Scanner中</span></span><br><span class="line">input.nextDouble();   <span class="hljs-comment">//.nextDouble()用来读取一个double值</span></span><br><span class="line"><span class="hljs-comment">//输出</span></span><br><span class="line">System.out.println(<span class="hljs-string">""</span>) ;</span><br><span class="line">System.out.printf(<span class="hljs-string">"%4.2f"</span>, m);    <span class="hljs-comment">//格式化输出</span></span><br><span class="line"><span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">%d 布尔值； %c 字符； %d 十进制整数； %f 浮点数； %e 标准科学计数法形式的数； %s 字符串；</span></span><br><span class="line"><span class="hljs-comment">*/</span></span><br></pre></td></tr></table></figure>
-
 <p>Scanner对象的方法</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -169,7 +167,8 @@
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>nextByte()</td>
 <td>读取一个byte类的整数</td>
 </tr>
@@ -201,17 +200,19 @@
 <td>nextLine()</td>
 <td>读取整行字符串</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>注意：为了避免错误，不要在 <code>nextByte(), nextShort(), nextInt(), nextLong(), nextFloat(), nextDouble(), next()</code> 之后使用 <code>nextLine()</code>。</p>
 <p><strong>输入输出重定向</strong></p>
 <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java SentinelValue  &lt;  input.txt</span><br><span class="line">java Classname &gt; output.txt</span><br><span class="line">java SentinelValue &lt;input.txt&gt; output.txt</span><br></pre></td></tr></table></figure>
-
 <h3 id="标识符命名"><a href="#标识符命名" class="headerlink" title="标识符命名"></a>标识符命名</h3><ul>
 <li>只能用三类符号: 字母、数字、$</li>
 <li>命名不能以数字开头</li>
 <li>常量采用字母全大写形式，在数据类型前需加上 <code>finall</code></li>
 </ul>
 <h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><p>共有8种数据类型（数值、字符值、布尔值数据）</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -220,7 +221,8 @@
 <th>存储大小</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>byte</td>
 <td>$-2^7(-128)$ ~ $2^7-127$</td>
 <td>8位带符号整型</td>
@@ -250,7 +252,9 @@
 <td>负数范围：$-1.7976931348623157<em>10^{308}$ ~ $-4.9</em>10^{-324}$   正数范围：$4.9*10^{-324}$ ~ $1.7976931348623157^{308}$</td>
 <td>64位双精度浮点数</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>此外还有字符类型 <code>char</code> 和逻辑类型 <code>boolean</code></p>
 <h3 id="自动数据类型转换"><a href="#自动数据类型转换" class="headerlink" title="自动数据类型转换"></a>自动数据类型转换</h3><p>从左到右</p>
 <p>byte - char - short - int - long - float - double</p>
@@ -259,14 +263,16 @@
 <li>接口（interface）</li>
 <li>数组（array）</li>
 </ul>
-<h3 id="基本数值操作符"><a href="#基本数值操作符" class="headerlink" title="基本数值操作符"></a>基本数值操作符</h3><table>
+<h3 id="基本数值操作符"><a href="#基本数值操作符" class="headerlink" title="基本数值操作符"></a>基本数值操作符</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>运算符</th>
 <th>操作</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>+</td>
 <td>加</td>
 </tr>
@@ -290,15 +296,19 @@
 <td>Math.pow(x, y)</td>
 <td>幂运算</td>
 </tr>
-</tbody></table>
-<h3 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h3><table>
+</tbody>
+</table>
+</div>
+<h3 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>操作符</th>
 <th>操作</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>！</td>
 <td>逻辑非</td>
 </tr>
@@ -307,27 +317,33 @@
 <td>逻辑与</td>
 </tr>
 <tr>
-<td>||</td>
+<td>\</td>
+<td>\</td>
+<td></td>
 <td>逻辑或</td>
 </tr>
 <tr>
 <td>^</td>
 <td>逻辑异或</td>
 </tr>
-</tbody></table>
-<h3 id="操作符运算优先级"><a href="#操作符运算优先级" class="headerlink" title="操作符运算优先级"></a>操作符运算优先级</h3><table>
+</tbody>
+</table>
+</div>
+<h3 id="操作符运算优先级"><a href="#操作符运算优先级" class="headerlink" title="操作符运算优先级"></a>操作符运算优先级</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>操作符</th>
 <th>优先级依次降低</th>
 </tr>
 </thead>
-<tbody><tr>
-<td>var++, var–</td>
+<tbody>
+<tr>
+<td>var++, var—</td>
 <td>最高级</td>
 </tr>
 <tr>
-<td>+, -, ++var, –var</td>
+<td>+, -, ++var, —var</td>
 <td></td>
 </tr>
 <tr>
@@ -363,22 +379,28 @@
 <td></td>
 </tr>
 <tr>
-<td>||</td>
+<td>\</td>
+<td>\</td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>=, +=, -=, *=, /=, %=</td>
 <td>最低级</td>
 </tr>
-</tbody></table>
-<h3 id="转义符"><a href="#转义符" class="headerlink" title="转义符"></a>转义符</h3><table>
+</tbody>
+</table>
+</div>
+<h3 id="转义符"><a href="#转义符" class="headerlink" title="转义符"></a>转义符</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>转义符</th>
 <th>含义</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>\b</td>
 <td>回退一格</td>
 </tr>
@@ -406,15 +428,19 @@
 <td><code>\&quot;</code></td>
 <td>双引号</td>
 </tr>
-</tbody></table>
-<h3 id="character类判断字符类型"><a href="#character类判断字符类型" class="headerlink" title="character类判断字符类型"></a>character类判断字符类型</h3><table>
+</tbody>
+</table>
+</div>
+<h3 id="character类判断字符类型"><a href="#character类判断字符类型" class="headerlink" title="character类判断字符类型"></a>character类判断字符类型</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>方法</th>
 <th>功能</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>isDigit(ch)</td>
 <td>判断字符是否为数字，是则返回true，否则返回false</td>
 </tr>
@@ -442,8 +468,11 @@
 <td>toUpperCase(ch)</td>
 <td>返回字符的大写形式</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>Java中字符串为String类型，String类有如下方法：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -451,7 +480,8 @@
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>length()</td>
 <td>返回字符数</td>
 </tr>
@@ -519,11 +549,14 @@
 <td>substring(beginIndex, endIndex)</td>
 <td>返回从beginIndex到endIndex（不包含endIndex处的字符）的字符串</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>补充：</p>
 <ul>
 <li>将数值型字符串转换成数值</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -531,11 +564,14 @@
 <th>转换成整数</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Double.parseDouble(doubleString)</td>
 <td>转换成双精度浮点数</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <ul>
 <li>数值可与字符串进行连接构成字符串 <code>String s = number + &quot;&quot;;</code></li>
 </ul>
@@ -1578,7 +1614,7 @@
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 kkkchan&nbsp;
+                &copy; 2020 kkkchan&nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                 

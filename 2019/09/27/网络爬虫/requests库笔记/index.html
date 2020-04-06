@@ -155,7 +155,6 @@
         <div class="content">
             <p>对于库的选择和Robots协议作基本介绍，requests库见官方中文文档</p>
 <a id="more"></a>
-
 <h2 id="网络爬虫规模及爬虫库的选择"><a href="#网络爬虫规模及爬虫库的选择" class="headerlink" title="网络爬虫规模及爬虫库的选择"></a>网络爬虫规模及爬虫库的选择</h2><ul>
 <li>小规模。当数据量小，且对爬取速度不敏感时采用<strong>Requests库</strong></li>
 <li>中规模。当数据规模较大，且对爬去速度敏感时采用<strong>Scrapy库</strong></li>
@@ -166,7 +165,6 @@
 <li>发布公告：通过Robots（Robots Exclusion Standard）协议，将网站的爬取策略（一个txt文件）告诉所有爬虫，要求按照规则对网页进行爬取      （网络爬虫也可以不遵守Robots协议，但是存在着法律风险）</li>
 </ol>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># Robots demo from www.jd.com/robot.txt</span><br><span class="line"># 网络爬虫应该能自动识别robots.txt，并根据内容进行爬取</span><br><span class="line">User-agent: * </span><br><span class="line">Disallow: /?* </span><br><span class="line">Disallow: /pop/*.html </span><br><span class="line">Disallow: /pinpai/*.html?* </span><br><span class="line">User-agent: EtaoSpider </span><br><span class="line">Disallow: / </span><br><span class="line">User-agent: HuihuiSpider </span><br><span class="line">Disallow: / </span><br><span class="line">User-agent: GwdangSpider </span><br><span class="line">Disallow: / </span><br><span class="line">User-agent: WochachaSpider </span><br><span class="line">Disallow: /</span><br></pre></td></tr></table></figure>
-
 
         </div>
         
@@ -1196,7 +1194,7 @@
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 kkkchan&nbsp;
+                &copy; 2020 kkkchan&nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                 

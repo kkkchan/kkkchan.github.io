@@ -155,28 +155,17 @@
         <div class="content">
             <p>分支、条件、循环</p>
 <a id="more"></a>
-
-
-
 <h2 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h2><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">if</span> (<span class="hljs-keyword">true</span> or <span class="hljs-keyword">false</span>)&#123;</span><br><span class="line">    	code block one;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">true</span> or <span class="hljs-keyword">false</span>)&#123;</span><br><span class="line">    	code block two;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">else</span> &#123;</span><br><span class="line">    	code block three;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">switch</span> (status)&#123;</span><br><span class="line">		<span class="hljs-keyword">case</span> <span class="hljs-number">0</span>: code one;</span><br><span class="line">					  <span class="hljs-keyword">break</span>;</span><br><span class="line">		<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>: code two;</span><br><span class="line">					  <span class="hljs-keyword">break</span>;</span><br><span class="line">		<span class="hljs-keyword">default</span>: code three;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h2 id="条件表达式"><a href="#条件表达式" class="headerlink" title="条件表达式"></a>条件表达式</h2><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/* boolean-expression ? expression1 : expression2; */</span></span><br><span class="line">y = (x &gt; <span class="hljs-number">0</span>) ? <span class="hljs-number">1</span> : -<span class="hljs-number">1</span>;</span><br></pre></td></tr></table></figure>
-
 <h2 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h2><p>主要有如下三种循环结构</p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//while型</span></span><br><span class="line"><span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span> or <span class="hljs-keyword">false</span>)&#123;</span><br><span class="line">    code block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//do-while型</span></span><br><span class="line"><span class="hljs-keyword">do</span> &#123;</span><br><span class="line">    code block;</span><br><span class="line">&#125; <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span> of <span class="hljs-keyword">false</span>)</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//for循环型</span></span><br><span class="line"><span class="hljs-keyword">for</span> (i = initialValue; i &lt; endValue; i++)&#123;</span><br><span class="line">    code block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>第一和第三种为前测循环，第二种为后测循环</p>
 <p><strong>另外还有foreach循环</strong></p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">double</span> e: myList)&#123;</span><br><span class="line">    System.out.println(e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h2 id="如何创建方法"><a href="#如何创建方法" class="headerlink" title="如何创建方法"></a>如何创建方法</h2><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">	修饰符  返回值类型  方法名（参数列表）&#123;</span></span><br><span class="line"><span class="hljs-comment">			方法体</span></span><br><span class="line"><span class="hljs-comment">	&#125;</span></span><br><span class="line"><span class="hljs-comment">*/</span></span><br></pre></td></tr></table></figure>
-
 <p>main方法和其它方法的区别：main方法由Java虚拟机进行调用</p>
 <p>参数传递为值传递，方法的执行并不会改变原有参数的值</p>
 <p><strong>如何进行变量传递？</strong></p>
@@ -1215,7 +1204,7 @@
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 kkkchan&nbsp;
+                &copy; 2020 kkkchan&nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                 

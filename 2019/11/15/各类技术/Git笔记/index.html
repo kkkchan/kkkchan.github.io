@@ -155,22 +155,15 @@
         <div class="content">
             <p>Git学习笔记</p>
 <a id="more"></a>
-
 <h2 id="本地仓库常用操作"><a href="#本地仓库常用操作" class="headerlink" title="本地仓库常用操作"></a>本地仓库常用操作</h2><h3 id="初始化全局信息"><a href="#初始化全局信息" class="headerlink" title="初始化全局信息"></a>初始化全局信息</h3><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name "username" # 更改用户名 或 设置用户名</span><br><span class="line">git config --global user.email "emailaddress" # 更改用户邮件地址 或 设置用户邮件地址</span><br><span class="line">git config user.name	# 查看用户名</span><br><span class="line">git config user.email	# 查看用户邮件地址</span><br></pre></td></tr></table></figure>
-
 <h3 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h3><p>版本库：保存某群文件历史记录的仓库，可以利用版本库将文件恢复到任意想恢复的历史版本。版本库实际上是一个隐藏文件夹，文件夹名为<code>.git</code></p>
 <p>进入想创建版本库的文件夹，打开该文件夹目录</p>
 <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-
 <p>或者想在某处直接创建一个文件夹并建立版本库</p>
 <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir xx(文件夹名，精良用英文)</span><br><span class="line">cd xx</span><br><span class="line">pwd</span><br><span class="line">git init</span><br></pre></td></tr></table></figure>
-
 <h3 id="添加文件到Git版本库"><a href="#添加文件到Git版本库" class="headerlink" title="添加文件到Git版本库"></a>添加文件到Git版本库</h3><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add readme.txt # or some file name else，只是将本文存在stage(暂存区)</span><br><span class="line">git commit -m "append a readme file"  # 将文件提交至版本库，后面的字符串为提交信息</span><br></pre></td></tr></table></figure>
-
 <h3 id="查看版本中的状况并比较差别"><a href="#查看版本中的状况并比较差别" class="headerlink" title="查看版本中的状况并比较差别"></a>查看版本中的状况并比较差别</h3><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br><span class="line">git diff readme.txt   # 可返回版本库中与目前文件夹内readme.txt文件的差别</span><br></pre></td></tr></table></figure>
-
 <h3 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h3><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git log  # 查看版本记录</span><br><span class="line">git log --pretty=oneline</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> 相对版本回退</span></span><br><span class="line">git reset --hard HEAD^  # HEAD后跟上几个^就是向前回退多少个版本（相对次数回退），如果次数比较大，比如向前回退100个版本，写HEAD~100</span><br><span class="line"><span class="hljs-meta">#</span><span class="hljs-bash"> 绝对版本回退</span></span><br><span class="line">git reset --hard 07e0   # 根据git log显示的版本记录，每个记录有一个哈希数字，找到对应版本哈希数字的前x位，用在此处，如07e0</span><br><span class="line">git reflog  # 这个指令记录了每一次版本相关的操作</span><br></pre></td></tr></table></figure>
-
 <h3 id="工作区与暂存区"><a href="#工作区与暂存区" class="headerlink" title="工作区与暂存区"></a>工作区与暂存区</h3><ul>
 <li><strong>工作区（Working Directory）：</strong><code>.git</code>所在的目录下，除了.git之外的其他文件都是在工作区内</li>
 <li><strong>版本库（Repository）：</strong><code>.git</code>目录内所存的记录，有暂存区和Git为我们自动创建的第一个分支master，以及指向master的一个指针叫HEAD。</li>
@@ -179,28 +172,20 @@
 <p><img src="https://s2.ax1x.com/2019/12/02/QnYPUA.jpg" alt></p>
 <p>经过<code>add</code>添加的文件只会添加到<code>stage</code>，需要再次操作（<code>commit</code>，即提交）才能放到版本库，相当于需要二次确认操作才能完成版本添加。</p>
 <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git diff  # 如果不加参数则默认比较工作区与暂存区</span><br><span class="line">git diff --cached [&lt;path&gt;...] # 比较暂存区与最新版本库</span><br><span class="line">git diff HEAD [&lt;path&gt;...] # 比较工作区和最新版本库</span><br></pre></td></tr></table></figure>
-
 <h3 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h3><p>对于存到暂存区的文件，如果不想提交到版本库，可以尝试撤销。或者工作区的文件修改后，希望撤销该修改。</p>
 <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -- test.txt  # --不能省略，后面后加具体文件或者正则式匹配，作用是撤销工作区文件修改</span><br><span class="line">git reset HEAD # 对于已经存到暂存区的文件，根据git status的提示进行撤销</span><br></pre></td></tr></table></figure>
-
 <p>对于已经存在版本库的版本文件，可以利用版本回退进行处理。</p>
 <h3 id="文件删除"><a href="#文件删除" class="headerlink" title="文件删除"></a>文件删除</h3><p>文件删除命令同Linux下操作（毕竟Linux内核和Git都是一个人做出来的）</p>
 <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm readme.md</span><br></pre></td></tr></table></figure>
-
 <h2 id="远程仓库常用操作"><a href="#远程仓库常用操作" class="headerlink" title="远程仓库常用操作"></a>远程仓库常用操作</h2><p>首先是本地SSH的创建和与远程仓库（如GitHub、阿里Code等）账号的SSH绑定（具体百度）</p>
 <h3 id="连接远程仓库"><a href="#连接远程仓库" class="headerlink" title="连接远程仓库"></a>连接远程仓库</h3><p>在远程创建一个空仓库（不含readme文件）后，通过以下指令进行连接</p>
 <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin xxxx  # 后面的xxxx为具体网址，http或者ssh，origin为在本地自定义的仓库名</span><br></pre></td></tr></table></figure>
-
 <h3 id="下载或拉取远程仓库文件"><a href="#下载或拉取远程仓库文件" class="headerlink" title="下载或拉取远程仓库文件"></a>下载或拉取远程仓库文件</h3><p>如果远程仓库已经有文件，则只能先下载下来，或者拉取下来</p>
 <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone xxxx</span><br><span class="line">git pull origin master # 如果报错可以在后面加上参数--allow-unrelated-histories</span><br></pre></td></tr></table></figure>
-
 <h3 id="将本地文件推送到远程"><a href="#将本地文件推送到远程" class="headerlink" title="将本地文件推送到远程"></a>将本地文件推送到远程</h3><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master  # -u是指定后面的的仓库名和分支名为默认，之后便可直接用git push</span><br></pre></td></tr></table></figure>
-
 <h3 id="与远程仓库解除绑定"><a href="#与远程仓库解除绑定" class="headerlink" title="与远程仓库解除绑定"></a>与远程仓库解除绑定</h3><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote remove origin</span><br></pre></td></tr></table></figure>
-
 <p>修改绑定的远程库</p>
 <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote set-url origin xxxx</span><br></pre></td></tr></table></figure>
-
 <h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h2><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git branch  # 查看分支，显示结果中前面标有*号的是目前所处分支</span><br><span class="line">git -b checkout dev  # 增加并切换到名为dev的分支</span><br><span class="line">git merge dev # 合并dev分支到目前所处的分支（若出现冲突需要先根据提示进行修改）</span><br><span class="line">git branch -d dev  # 删除dev分支</span><br><span class="line">git log --graph --pretty=oneline --abbrev-commit  # 图形化分支显示</span><br></pre></td></tr></table></figure>
         </div>
         
@@ -1230,7 +1215,7 @@
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 kkkchan&nbsp;
+                &copy; 2020 kkkchan&nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                 

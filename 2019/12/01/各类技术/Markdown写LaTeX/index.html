@@ -159,7 +159,7 @@
 <h1 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h1><p>markdown所支持$LaTeX$公式输入分为两种：</p>
 <ol>
 <li>行内公式 ，利用两个<code>$</code> 进行包裹</li>
-<li>行间公式，利用两个<code>$$</code>进行包裹</li>
+<li>行间公式，利用两个$$$$进行包裹</li>
 </ol>
 <p>关于上小标：</p>
 <ol>
@@ -168,20 +168,22 @@
 </ol>
 <p>式子中<strong>空格和分行</strong>都会被忽略掉，但是可以利用特殊语法进行输入</p>
 <ol>
-<li><code>\,</code>,<code>\quad</code>,<code>\qquad</code> ，效果分别如右：$a,a$,$a\quad a$,$a\qquad a$</li>
+<li><code>\,</code>,<code>\quad</code>,<code>\qquad</code> ，效果分别如右：$a\,a$,$a\quad a$,$a\qquad a$</li>
 <li>在公式后输入普通文本（比如中文、空格、分行）：<code>\textrm{...}</code>，</li>
 <li><code>\\</code>为分行</li>
 </ol>
 <h1 id="基本数学符号"><a href="#基本数学符号" class="headerlink" title="基本数学符号"></a>基本数学符号</h1><p>对于集合（如实数集），有两种方式，实心和空心，分别为<code>\mathbb{...}</code>,<code>\mathbf{...}</code>，效果：$\mathbf{R}$,$\mathbb{R}$</p>
 <p>各类括号，包括四个层级<code>\big,\Big,\bigg,\Bigg</code>，用在标准括号前面，可调整实际的显示大小。</p>
-<h1 id="基本运算符"><a href="#基本运算符" class="headerlink" title="基本运算符"></a>基本运算符</h1><table>
+<h1 id="基本运算符"><a href="#基本运算符" class="headerlink" title="基本运算符"></a>基本运算符</h1><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>运算符</th>
 <th>语法</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>$\times $</td>
 <td><code>\times</code></td>
 </tr>
@@ -253,8 +255,11 @@
 <td>$\prod $</td>
 <td><code>\prod</code></td>
 </tr>
-</tbody></table>
-<h1 id="衔接符号"><a href="#衔接符号" class="headerlink" title="衔接符号"></a>衔接符号</h1><table>
+</tbody>
+</table>
+</div>
+<h1 id="衔接符号"><a href="#衔接符号" class="headerlink" title="衔接符号"></a>衔接符号</h1><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>含义</th>
@@ -262,7 +267,8 @@
 <th>效果</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>字母上加横线</td>
 <td><code>\overline{}</code></td>
 <td>$\overline{X} $</td>
@@ -335,17 +341,20 @@
 <tr>
 <td></td>
 <td></td>
-<td></td>
 </tr>
-</tbody></table>
-<h1 id="希腊字母"><a href="#希腊字母" class="headerlink" title="希腊字母"></a>希腊字母</h1><table>
+</tbody>
+</table>
+</div>
+<h1 id="希腊字母"><a href="#希腊字母" class="headerlink" title="希腊字母"></a>希腊字母</h1><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>小写希腊字母</th>
 <th>语法</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>$\alpha $</td>
 <td><code>\alpha</code></td>
 </tr>
@@ -449,7 +458,10 @@
 <td>$\tau $</td>
 <td><code>\tau</code></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -457,7 +469,8 @@
 <th>语法</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>$\Gamma $</td>
 <td><code>\Gamma</code></td>
 </tr>
@@ -501,7 +514,9 @@
 <td>$\Omega $</td>
 <td><code>\Omega</code></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 
         </div>
         
@@ -1531,7 +1546,7 @@
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 kkkchan&nbsp;
+                &copy; 2020 kkkchan&nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                 

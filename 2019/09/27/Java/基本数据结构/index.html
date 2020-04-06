@@ -155,10 +155,8 @@
         <div class="content">
             <p>数组等结构</p>
 <a id="more"></a>
-
 <h2 id="一维数组"><a href="#一维数组" class="headerlink" title="一维数组"></a>一维数组</h2><p>用于存储<strong>相同数据类型</strong>的量，一旦创建，不可更改大小，数组名为<strong>引用变量</strong></p>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//声明</span></span><br><span class="line">elementType[] arrayRefVar;</span><br><span class="line"><span class="hljs-comment">//创建</span></span><br><span class="line">elementType[] arrayRefVar = <span class="hljs-keyword">new</span> elementType[arraySize];</span><br><span class="line"><span class="hljs-comment">//初始化</span></span><br><span class="line">elementType[] arrayRefVar = &#123;value0, value1,...,valuek&#125;;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//匿名数组创建</span></span><br><span class="line"><span class="hljs-keyword">new</span> elementType[]&#123;value0, value1,...,valuek&#125;;</span><br></pre></td></tr></table></figure>
-
 <h3 id="大小如何确定？"><a href="#大小如何确定？" class="headerlink" title="大小如何确定？"></a>大小如何确定？</h3><p>1.指定大小(创建) 2.默认大小(初始化)</p>
 <h3 id="如何复制数组元素（非引用）？"><a href="#如何复制数组元素（非引用）？" class="headerlink" title="如何复制数组元素（非引用）？"></a>如何复制数组元素（非引用）？</h3><ol>
 <li>逐个操作</li>
@@ -166,10 +164,9 @@
 <li>clone()</li>
 </ol>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//arraycopy的使用</span></span><br><span class="line">System.arraycopy(sourceArray, srcPos, targetArray, tarPos, length);</span><br></pre></td></tr></table></figure>
-
 <h3 id="方法中可变参数列表"><a href="#方法中可变参数列表" class="headerlink" title="方法中可变参数列表"></a>方法中可变参数列表</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//typeName... parameterName</span></span><br><span class="line"><span class="hljs-comment">//一个方法中只能指定一个可变参数，必须放在常规参数之后</span></span><br></pre></td></tr></table></figure>
-
 <h3 id="java-util-Arrays类"><a href="#java-util-Arrays类" class="headerlink" title="java.util.Arrays类"></a>java.util.Arrays类</h3><p>该类提供了诸多数组处理的<strong>静态方法</strong>，如下列几条</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -177,7 +174,8 @@
 <th></th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>parallelSort(chars, startpos, endpos)</td>
 <td></td>
 </tr>
@@ -197,7 +195,9 @@
 <td>toString(array)</td>
 <td>返回包含数组内所有元素的字符串</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="多维数组"><a href="#多维数组" class="headerlink" title="多维数组"></a>多维数组</h2><p>创建、初始化同一维数组，只在于括号数量的区别，创建多维数组时，<strong>必须指定第一维的大小</strong></p>
 <h3 id="锯齿数组"><a href="#锯齿数组" class="headerlink" title="锯齿数组"></a>锯齿数组</h3><p>锯齿数组指一类多维（以二维为例），其各维的数据长度不同</p>
 <p>由于每行本身是一个数组，如果创建时，每行单独创建就可以设置不同的长度</p>
@@ -1230,7 +1230,7 @@
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 kkkchan&nbsp;
+                &copy; 2020 kkkchan&nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                 

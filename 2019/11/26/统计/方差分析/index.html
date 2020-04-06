@@ -155,7 +155,6 @@
         <div class="content">
             <p>方差分析</p>
 <a id="more"></a>
-
 <h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>检验不同样本是否具有相同的<strong>均值</strong>（在基本假定条件下，即检验样本是否来自<strong>同一个正态总体</strong>）</p>
 <p>方式：通过对各观察数据误差来源进行分析，来判断多个总体均值是否相等</p>
 <h2 id="基本思想和原理"><a href="#基本思想和原理" class="headerlink" title="基本思想和原理"></a>基本思想和原理</h2><p>两类误差：<strong>随机误差</strong>和<strong>系统误差</strong></p>
@@ -182,11 +181,8 @@
 <li>$SST$ ,$SSA$, $SSE$三者的自由度分被是$n-1$,$k-1$,$n-k$</li>
 </ul>
 <h3 id="计算均方（方差）-MS"><a href="#计算均方（方差）-MS" class="headerlink" title="计算均方（方差）$MS$"></a>计算均方（方差）$MS$</h3><p>$MSA$: $SSA$的均方，组间方差  </p>
-<p>$$MSA=\frac{SSA}{k-1}$$</p>
-<p>$MSE$: $SSE$的均方，组内方差</p>
-<p>$$MSE=\frac{SSE}{n-k}$$</p>
-<h3 id="比较组间方差和组内方差，构造-F"><a href="#比较组间方差和组内方差，构造-F" class="headerlink" title="比较组间方差和组内方差，构造$F$"></a>比较组间方差和组内方差，构造$F$</h3><p>$$F=\frac{MSA}{MSE}～F(k-1,n-k)$$</p>
-<h2 id="统计决策"><a href="#统计决策" class="headerlink" title="统计决策"></a>统计决策</h2><p>给定显著性水平$\alpha$，通过查$F$分布表得到与第一自由度和第二自由度相对应的临界值$F_\alpha$，然后比较通过样本计算而得的$F$值和临界值$F_\alpha$，若$F&gt;F_\alpha$，则拒绝原假设$H_0$，否则接收该假设。</p>
+<script type="math/tex; mode=display">MSA=\frac{SSA}{k-1}</script><p>$MSE$: $SSE$的均方，组内方差</p>
+<script type="math/tex; mode=display">MSE=\frac{SSE}{n-k}</script><h3 id="比较组间方差和组内方差，构造-F"><a href="#比较组间方差和组内方差，构造-F" class="headerlink" title="比较组间方差和组内方差，构造$F$"></a>比较组间方差和组内方差，构造$F$</h3><script type="math/tex; mode=display">F=\frac{MSA}{MSE}～F(k-1,n-k)</script><h2 id="统计决策"><a href="#统计决策" class="headerlink" title="统计决策"></a>统计决策</h2><p>给定显著性水平$\alpha$，通过查$F$分布表得到与第一自由度和第二自由度相对应的临界值$F_\alpha$，然后比较通过样本计算而得的$F$值和临界值$F_\alpha$，若$F&gt;F_\alpha$，则拒绝原假设$H_0$，否则接收该假设。</p>
 <h2 id="方差分析中的多重比较"><a href="#方差分析中的多重比较" class="headerlink" title="方差分析中的多重比较"></a>方差分析中的多重比较</h2><p>多重比较：通过对总体均值之间的配对比较来进一步检验到底那些均值之间存在差异</p>
 <p><strong>最小显著差异</strong>方法（由Fisher提出），简称<strong>LSD</strong>，（模式识别PPT里运用过）</p>
 <p>示范：（基于统计量$\overline{x_i}-\overline{x_j}$的$LSD$方法）</p>
@@ -1229,7 +1225,7 @@
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 kkkchan&nbsp;
+                &copy; 2020 kkkchan&nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                 

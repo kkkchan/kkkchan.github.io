@@ -155,19 +155,18 @@
         <div class="content">
             <p>网页信息解析库</p>
 <a id="more"></a>
-
 <p>使用方式：</p>
 <figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> bs4 <span class="hljs-keyword">import</span> BeautifulSoup</span><br><span class="line">soup = BeautifulSoup(<span class="hljs-string">'&lt;html&gt;data&lt;/html&gt;'</span>, <span class="hljs-string">'html.parser'</span>)</span><br></pre></td></tr></table></figure>
-
 <p>只要提供的是标签数据，beautifulsoup库都能做很好的解析，可以讲数据处理成树状结构数据</p>
 <h2 id="基本标签和解释器"><a href="#基本标签和解释器" class="headerlink" title="基本标签和解释器"></a>基本标签和解释器</h2><p>共有四类解释器：<strong>html.parser、lxml、xml、html5lib</strong></p>
-<pre><code>（其中lxml也是处理HTML的解释器，xml也可以写作lxml-xml）</code></pre><p>共有五种基本元素：</p>
+<pre><code>     （其中lxml也是处理HTML的解释器，xml也可以写作lxml-xml）
+</code></pre><p>共有五种基本元素：</p>
 <ul>
 <li><strong>Tag(标签)</strong>，指整个标签</li>
 <li><strong>Name(标签的名字)</strong></li>
 <li><strong>ttributes(标签的属性)</strong>，为字典类型，存储了标签的各属性值，如class、href、id等。1. 通过.attrs可获取标签所有的属性 2. 通过类似字典的操作访问，如tag[‘class’]</li>
 <li><strong>NavigableString(标签内的非属性字符串)</strong>，字符串，为标签内的字符串信息，通过.string获取，若标签只有一个子节点，也可以通过.string直接获取子节点的字符串内容</li>
-<li><strong>Comment(标签内字符串的注释部分)</strong>，不常用，注释是利用!–符号构成的内容<code>&lt;!--This is a comment--&gt;</code>，如，通过NavigableString类可以直接显示其文本内容，不会注明为注释，需要利用一些手段进行自行判断，comment也是一种NaviableString</li>
+<li><strong>Comment(标签内字符串的注释部分)</strong>，不常用，注释是利用!—符号构成的内容<code>&lt;!--This is a comment--&gt;</code>，如，通过NavigableString类可以直接显示其文本内容，不会注明为注释，需要利用一些手段进行自行判断，comment也是一种NaviableString</li>
 </ul>
 <h2 id="遍历操作"><a href="#遍历操作" class="headerlink" title="遍历操作"></a>遍历操作</h2><p>由于BeautifulSoup对象为树结构，可进行上行、下行和平行遍历</p>
 <ol>
@@ -197,16 +196,16 @@
 <li>bs4库默认将所有HTML输入都变成utf-8编码，而由于Python 3以上的版本默认支持编码为utf-8所有解析无障碍，但如果是Python 2的版本，则会出现编码上的问题</li>
 </ul>
 <h2 id="信息标记的若干形式"><a href="#信息标记的若干形式" class="headerlink" title="信息标记的若干形式"></a>信息标记的若干形式</h2><ol>
-<li><p>XML(eXtensible Markup Language）   –最早的通用信息标记语言，可拓展性好，但略繁琐。适合Internet上的信息交互与传递</p>
+<li><p>XML(eXtensible Markup Language）   —最早的通用信息标记语言，可拓展性好，但略繁琐。适合Internet上的信息交互与传递</p>
 <p>内容：<name> … &lt;\name&gt;</name></p>
 <p>注释：<!--  --></p>
 </li>
-<li><p>JSON(JavaScipt Object Notation)      –信息有类型，适合程序处理(js)，较XML简洁，但无法表示注释。适合移动应用云端和节点的信息通信</p>
+<li><p>JSON(JavaScipt Object Notation)      —信息有类型，适合程序处理(js)，较XML简洁，但无法表示注释。适合移动应用云端和节点的信息通信</p>
 <p>从名字可以看出是面向对象的一种表达方式，内容采用<strong>类型的键值对</strong>key: value进行表示</p>
 <p>并列内容采用, 进行分隔</p>
 <p>注意：字符串都是用双引号表示，<strong>单引号不可以</strong>，当值的信息有多个时，才有[ , ]的形式进行组织，可以嵌套，<strong>如果嵌套的对象为键值对，则需要用{}符号</strong></p>
 </li>
-<li><p>YAML(YAML Ain’t Markup Language)      –信息无类型，文本信息比例最高，且有注释，可读性高。适合各类系统的配置文件</p>
+<li><p>YAML(YAML Ain’t Markup Language)      —信息无类型，文本信息比例最高，且有注释，可读性高。适合各类系统的配置文件</p>
 <p>采用<strong>无类型的键值对</strong>进行信息存储，通过<strong>缩进格式</strong>来表示信息的嵌套（层次关系）</p>
 <p>采用-号表示并列关系</p>
 <p>采用#进行注释</p>
@@ -227,7 +226,7 @@
 <p>name:对标签名称的检索字符串</p>
 <p>attrs:对标签属性值的检索字符串，可标注属性检索</p>
 <p>recursive:是否对子孙全部检索，默认为True</p>
-<p>string:&lt;&gt;…&lt;/&gt;中字符串区域的检索字符串</p>
+<p>string:<>...</>中字符串区域的检索字符串</p>
 <p>如果传入参数为列表，Beautiful Soup会将与列表中任一元素匹配的内容返回</p>
 <p>参数也可以为方法</p>
 <p>可以通过 <code>find_all()</code> 方法的 <code>attrs</code> 参数定义一个字典参数来搜索包含特殊属性的tag</p>
@@ -1273,7 +1272,7 @@
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 kkkchan&nbsp;
+                &copy; 2020 kkkchan&nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                 

@@ -155,7 +155,6 @@
         <div class="content">
             <p>简单介绍正则表达式的思想及用法</p>
 <a id="more"></a>
-
 <h2 id="什么是正则表达式"><a href="#什么是正则表达式" class="headerlink" title="什么是正则表达式"></a>什么是正则表达式</h2><ul>
 <li>用来简洁表达一组字符串的表达式</li>
 <li>一种通用的字符串表达框架</li>
@@ -164,105 +163,107 @@
 </ul>
 <h2 id="独特优势"><a href="#独特优势" class="headerlink" title="独特优势"></a>独特优势</h2><p><strong>简洁高效</strong>，用来简洁表达一组字符串，主要使用在字符串匹配中（一行胜千言）</p>
 <h2 id="语法构成"><a href="#语法构成" class="headerlink" title="语法构成"></a>语法构成</h2><p>由字符和操作符构成</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">操作符</th>
-<th align="left">说明</th>
+<th style="text-align:left">操作符</th>
+<th style="text-align:left">说明</th>
 <th>实例</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">.</td>
-<td align="left">表示任何单个字符(除了\)</td>
+<tbody>
+<tr>
+<td style="text-align:left">.</td>
+<td style="text-align:left">表示任何单个字符(除了\)</td>
 <td></td>
 </tr>
 <tr>
-<td align="left">[ ]</td>
-<td align="left">字符集,对单个字符给出取值范围</td>
+<td style="text-align:left">[ ]</td>
+<td style="text-align:left">字符集,对单个字符给出取值范围</td>
 <td>[abc]表示a、b、c,[a‐z]表示a到z单个字符</td>
 </tr>
 <tr>
-<td align="left">[^ ]</td>
-<td align="left">非字符集,对单个字符给出排除范围</td>
-<td>[^abc]表示非a或b或c的单个字符</td>
+<td style="text-align:left"><sup><a href="#fn_ " id="reffn_ "> </a></sup></td>
+<td style="text-align:left">非字符集,对单个字符给出排除范围</td>
+<td><sup><a href="#fn_abc" id="reffn_abc">abc</a></sup>表示非a或b或c的单个字符</td>
 </tr>
 <tr>
-<td align="left">*</td>
-<td align="left">前一个字符0次或无限次扩展</td>
+<td style="text-align:left">*</td>
+<td style="text-align:left">前一个字符0次或无限次扩展</td>
 <td>abc* 表示 ab、abc、abcc、abccc等</td>
 </tr>
 <tr>
-<td align="left">+</td>
-<td align="left">前一个字符1次或无限次扩展</td>
+<td style="text-align:left">+</td>
+<td style="text-align:left">前一个字符1次或无限次扩展</td>
 <td>abc+ 表示 abc、abcc、abccc等</td>
 </tr>
 <tr>
-<td align="left">?</td>
-<td align="left">前一个字符0次或1次扩展</td>
+<td style="text-align:left">?</td>
+<td style="text-align:left">前一个字符0次或1次扩展</td>
 <td>abc? 表示 ab、abc</td>
 </tr>
 <tr>
-<td align="left">|</td>
-<td align="left">左右表达式任意一个</td>
+<td style="text-align:left">\</td>
+<td style="text-align:left"></td>
+<td>左右表达式任意一个</td>
 <td>abc</td>
 </tr>
 <tr>
-<td align="left">{m}</td>
-<td align="left">扩展前一个字符m次</td>
+<td style="text-align:left">{m}</td>
+<td style="text-align:left">扩展前一个字符m次</td>
 <td>ab{2}c表示abbc</td>
 </tr>
 <tr>
-<td align="left">{m,n}</td>
-<td align="left">扩展前一个字符m至n次(含n)</td>
+<td style="text-align:left">{m,n}</td>
+<td style="text-align:left">扩展前一个字符m至n次(含n)</td>
 <td>ab{1,2}c表示abc、abbc</td>
 </tr>
 <tr>
-<td align="left">^</td>
-<td align="left">匹配字符串开头</td>
+<td style="text-align:left">^</td>
+<td style="text-align:left">匹配字符串开头</td>
 <td>^abc表示abc且在一个字符串的开头</td>
 </tr>
 <tr>
-<td align="left">$</td>
-<td align="left">匹配字符串结尾</td>
+<td style="text-align:left">$</td>
+<td style="text-align:left">匹配字符串结尾</td>
 <td>abc$表示abc且在一个字符串的结尾</td>
 </tr>
 <tr>
-<td align="left">( )</td>
-<td align="left">分组标记,内部只能使用|操作符</td>
-<td>(abc)表示abc, （abc|def）表示abc、def</td>
+<td style="text-align:left">( )</td>
+<td style="text-align:left">分组标记,内部只能使用\</td>
+<td>操作符</td>
+<td>(abc)表示abc, （abc\</td>
+<td>def）表示abc、def</td>
 </tr>
 <tr>
-<td align="left">\d</td>
-<td align="left">数字,等价于[0‐9]</td>
+<td style="text-align:left">\d</td>
+<td style="text-align:left">数字,等价于[0‐9]</td>
 <td></td>
 </tr>
 <tr>
-<td align="left">\w</td>
-<td align="left">单词字符,等价于[A‐Za‐z0‐9]</td>
-<td></td>
+<td style="text-align:left">\w</td>
+<td style="text-align:left">单词字符,等价于[A‐Za‐z0‐9]</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>补充：</p>
 <ul>
 <li>匹配中文字符</li>
 </ul>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[\u4e00-\u9fa5]</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>匹配IP地址(4段，每段为0-255) </li>
 </ul>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">((25[0-5]|2\d&#123;0-4&#125;\d|1\d&#123;2&#125;|[1-9]?\d).)&#123;3&#125;(25[0-5]|2\d&#123;0-4&#125;\d|1\d&#123;2&#125;|[1-9]?\d)</span><br></pre></td></tr></table></figure>
-
 <h2 id="使用正则表达式"><a href="#使用正则表达式" class="headerlink" title="使用正则表达式"></a>使用正则表达式</h2><p><strong>编译</strong>（将符合正则表达式语法的字符串转换成正则表达式特征）</p>
 <h3 id="python中使用"><a href="#python中使用" class="headerlink" title="python中使用"></a>python中使用</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> re</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>re库需要采用raw string类型(字符串中的<code>\</code>不被理解为转移符，如果用string就会比较繁琐)表示正则表达式，表示为<code>r&#39;text&#39;</code></li>
 <li>通过group方法，可以获取正则表达式中的字符串</li>
 </ul>
 <figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">re.search(<span class="hljs-string">r'text'</span>).group()</span><br><span class="line">re.search(<span class="hljs-string">r'text'</span>).group(<span class="hljs-number">0</span>) <span class="hljs-comment"># 与上行相同，反正整体匹配字符串</span></span><br><span class="line">re.search(<span class="hljs-string">r'text'</span>).group(<span class="hljs-number">1</span>) <span class="hljs-comment"># </span></span><br><span class="line">re.search(<span class="hljs-string">r'text'</span>).group(<span class="hljs-number">2</span>)</span><br><span class="line">re.search(<span class="hljs-string">r'text'</span>).group(<span class="hljs-number">3</span>)</span><br></pre></td></tr></table></figure>
-
 <h3 id="匹配规则"><a href="#匹配规则" class="headerlink" title="匹配规则"></a>匹配规则</h3><p><strong>贪婪匹配</strong>：匹配字符串为满足条件的最长字符串</p>
 <p>通过在匹配规则中加上?可以进行最小匹配</p>
 
@@ -1294,7 +1295,7 @@
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 kkkchan&nbsp;
+                &copy; 2020 kkkchan&nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                 

@@ -155,7 +155,6 @@
         <div class="content">
             <p>简要介绍前向神经网络和误差反向传播算法</p>
 <a id="more"></a>
-
 <h1 id="什么是前向神经网络？"><a href="#什么是前向神经网络？" class="headerlink" title="什么是前向神经网络？"></a>什么是前向神经网络？</h1><p>概率其实很简单，首先，是神经网络的一种，哪一种呢？前向！</p>
 <p><img src="https://s2.ax1x.com/2019/12/08/QapIc8.png" alt="前向神经网络"></p>
 <p>再解释前向神经网络之前，先简单提一嘴神经网络，神经网路是模拟人的神经结构而来的一种理论模型，由若干单个神经元构成，每个神经元接收一个输入（多个输入时可以认为先将其按一定规则累加为一个输入），产生一个输出。若干神经元分层排列相连就构成了神经网络。</p>
@@ -169,8 +168,7 @@
 <h1 id="反向误差传播算法"><a href="#反向误差传播算法" class="headerlink" title="反向误差传播算法"></a>反向误差传播算法</h1><p><strong>目的：更新权重参数值</strong>，使得神经网络最好地与问题拟合。</p>
 <p>把握关键点之后很简单，由于反向误差传播算法的具体运用是通过借助梯度下降算法，那么，在反向误差传播算法中，实际上传播的误差并不是绝对误差值，而是：<strong>梯度</strong></p>
 <p>而梯度值的计算，是从后往前，所以称为<strong>反向</strong>，首先根据最后的损失函数，计算出终点的误差梯度值，然后通过简单的连续偏导数运算可以得到所有<strong>权重参数</strong>的<strong>梯度值</strong>，按照选好的步长值$\lambda $进行更新：</p>
-<p>$$w^l_{ij}(k+1) = w^l_{ij}(k) - \lambda \Delta^l_{ij}$$</p>
-<p>注：</p>
+<script type="math/tex; mode=display">w^l_{ij}(k+1) = w^l_{ij}(k) - \lambda \Delta^l_{ij}</script><p>注：</p>
 <ul>
 <li>式子中，$w^l_{ij}(k+1)$表示表示神经网络中第$l$层第$i$个神经元到下一层第$j$个神经元的权重参数值，迭代次数为$k+1$次</li>
 <li>$\Delta^l_{ij}$上下标同上含义，表示该次迭代时该位置的权重参数所对应的误差梯度</li>
@@ -1204,7 +1202,7 @@
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 kkkchan&nbsp;
+                &copy; 2020 kkkchan&nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                 
