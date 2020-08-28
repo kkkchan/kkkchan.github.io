@@ -161,12 +161,14 @@
 <p>自动转化而成的Python设计文件，其内容就是一个类，其中有两个方法：<code>setupUi</code>、 <code>retranslateUI</code></p>
 <p>为了整个项目的模块化和后期阅读、更改、维护，尽量新建文件放置功能模块代码。以下基本框架介绍按照运行的递归顺序。</p>
 <h3 id="界面运行"><a href="#界面运行" class="headerlink" title="界面运行"></a>界面运行</h3><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:</span><br><span class="line">    app = QApplication(sys.argv)</span><br><span class="line">    my = MyMainWindow()</span><br><span class="line">    my.show()</span><br><span class="line"></span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+
 <p>这处为界面运行的引导代码，第一句和第四句一般是固定的（QApplication为从PyQt中引入的模块），二三句则是自行调整，此处我们的窗体类名为<code>MyMainWindow</code>，实例化对象命名为<code>my</code>，通过方法<code>show</code>进行循环运行。</p>
 <p>若设计多个界面跳转，可建立多个窗体类和实例化对象，通过事件（通常即按钮）来进行跳转响应。</p>
 <h3 id="窗体类"><a href="#窗体类" class="headerlink" title="窗体类"></a>窗体类</h3><p>窗体类中，主要用于功能与界面设计中模块的绑定（如按钮、输入输出文本框等等）</p>
 <p>PyQt中常用的模块主要有：Push Button、Label、Text Browser、Line Edit、Text Edit。</p>
 <p>在初始化方法里，进行<strong>按钮绑定</strong>（主要是按钮）</p>
 <figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyMainWindow</span><span class="hljs-params">(QMainWindow, main_ui.Ui_MainWindow)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, parent=None)</span>:</span></span><br><span class="line">        <span class="hljs-comment"># 初始化</span></span><br><span class="line">        super(MyMainWindow, self).__init__(parent)</span><br><span class="line">        self.setupUi(self)</span><br><span class="line">        self.ip = self.host_ip()</span><br><span class="line">        self.listen_thread = <span class="hljs-literal">None</span></span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 按钮功能绑定</span></span><br><span class="line">        self.get_ip_button.clicked.connect(self.set_ip)</span><br><span class="line">        self.listen_button.clicked.connect(self.start_listen)</span><br><span class="line">        self.stop_button.clicked.connect(self.stop_connection)</span><br><span class="line">        self.exit_button.clicked.connect(self.close)</span><br></pre></td></tr></table></figure>
+
 <p>窗体类为多继承结构（此处继承了两个类，第一处继承是PyQt的主窗体类，第二处为我们的界面设计类），通过调用<code>setupUi</code>来引入设计中的各模块，下面四句则是按钮绑定，具体方法为<code>按钮.clicked.connect(响应函数)</code></p>
 <p>各种文本框的内容设计，一般放在窗体类的其它方法中，通过键盘输入、按钮或者线程活动进行内容变更。</p>
 <p>窗体的主要功能应该都放在窗体类中。</p>
@@ -181,6 +183,7 @@
 <h3 id="线程创建和实例化："><a href="#线程创建和实例化：" class="headerlink" title="线程创建和实例化："></a>线程创建和实例化：</h3><p>创建线程必须继承自<code>QThread</code>类（或使用Python线程），可根据需求进行类变量设计和初始化方法的设计，主要功能代码放在<code>run</code>方法中，<code>run</code>方法是对<code>QThread</code>内方法的重载。</p>
 <p>实例化方法（此处线程名为<code>ListenThread</code>）：</p>
 <figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">listen_thread = ListenThread()</span><br><span class="line">listen_thread.start()</span><br></pre></td></tr></table></figure>
+
 <p>要顺利完成线程的使用，需着重注意的一个问题：线程中重载的方法是<code>run</code>，实例化线程运行的方法是<code>start</code>。</p>
 
         </div>
@@ -309,7 +312,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        58
+                        53
                     </p>
                 </div>
             </div>
@@ -319,7 +322,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        13
+                        11
                     </p>
                 </div>
             </div>
@@ -329,7 +332,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        20
+                        18
                     </p>
                 </div>
             </div>
@@ -433,7 +436,7 @@
                 <span class="level-item">数据科学</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">6</span>
+                <span class="level-item tag">5</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/矩阵/">
@@ -459,22 +462,6 @@
             <span class="level-end">
                 <span class="level-item tag">3</span>
             </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/论文阅读/">
-            <span class="level-start">
-                <span class="level-item">论文阅读</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/设计模式/">
-            <span class="level-start">
-                <span class="level-item">设计模式</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">5</span>
-            </span>
         </a></li>
             </ul>
         </div>
@@ -487,7 +474,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/BeautifulSoup库/" style="font-size: 10px;">BeautifulSoup库</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Java/" style="font-size: 17.14px;">Java</a> <a href="/tags/LaTeX/" style="font-size: 10px;">LaTeX</a> <a href="/tags/PyQt/" style="font-size: 11.43px;">PyQt</a> <a href="/tags/Python/" style="font-size: 15.71px;">Python</a> <a href="/tags/requests库/" style="font-size: 10px;">requests库</a> <a href="/tags/re库/" style="font-size: 10px;">re库</a> <a href="/tags/个人/" style="font-size: 20px;">个人</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/周记/" style="font-size: 10px;">周记</a> <a href="/tags/安卓/" style="font-size: 11.43px;">安卓</a> <a href="/tags/数据科学/" style="font-size: 15.71px;">数据科学</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/矩阵/" style="font-size: 10px;">矩阵</a> <a href="/tags/统计/" style="font-size: 11.43px;">统计</a> <a href="/tags/网络爬虫/" style="font-size: 12.86px;">网络爬虫</a> <a href="/tags/论文阅读/" style="font-size: 10px;">论文阅读</a> <a href="/tags/设计模式/" style="font-size: 14.29px;">设计模式</a> <a href="/tags/读书笔记/" style="font-size: 18.57px;">读书笔记</a>
+        <a href="/tags/BeautifulSoup库/" style="font-size: 10px;">BeautifulSoup库</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Java/" style="font-size: 17.14px;">Java</a> <a href="/tags/LaTeX/" style="font-size: 10px;">LaTeX</a> <a href="/tags/PyQt/" style="font-size: 11.43px;">PyQt</a> <a href="/tags/Python/" style="font-size: 15.71px;">Python</a> <a href="/tags/requests库/" style="font-size: 10px;">requests库</a> <a href="/tags/re库/" style="font-size: 10px;">re库</a> <a href="/tags/个人/" style="font-size: 20px;">个人</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/周记/" style="font-size: 10px;">周记</a> <a href="/tags/安卓/" style="font-size: 11.43px;">安卓</a> <a href="/tags/数据科学/" style="font-size: 14.29px;">数据科学</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/矩阵/" style="font-size: 10px;">矩阵</a> <a href="/tags/统计/" style="font-size: 11.43px;">统计</a> <a href="/tags/网络爬虫/" style="font-size: 12.86px;">网络爬虫</a> <a href="/tags/读书笔记/" style="font-size: 18.57px;">读书笔记</a>
     </div>
 </div>
 
@@ -565,16 +552,54 @@
         
         <article class="media">
             
-            <a href="/2020/03/29/数据科学/主成分分析/" class="media-left">
+            <a href="/2020/08/28/网站迁移/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="主成分分析">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="网站迁移">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-29T09:09:21.000Z">2020-03-29</time></div>
-                    <a href="/2020/03/29/数据科学/主成分分析/" class="title has-link-black-ter is-size-6 has-text-weight-normal">主成分分析</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-28T08:43:00.000Z">2020-08-28</time></div>
+                    <a href="/2020/08/28/网站迁移/" class="title has-link-black-ter is-size-6 has-text-weight-normal">网站迁移</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/04/11/网络爬虫/网络基础/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-11T11:12:04.694Z">2020-04-11</time></div>
+                    <a href="/2020/04/11/网络爬虫/网络基础/" class="title has-link-black-ter is-size-6 has-text-weight-normal"></a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/06/数据科学/Perceptron/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="感知器">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-06T09:02:01.000Z">2020-03-06</time></div>
+                    <a href="/2020/03/06/数据科学/Perceptron/" class="title has-link-black-ter is-size-6 has-text-weight-normal">感知器</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/数据科学/">数据科学</a>
                     </p>
@@ -584,18 +609,18 @@
         
         <article class="media">
             
-            <a href="/2020/03/08/设计模式/模板方法模式&MVC复合模式/" class="media-left">
+            <a href="/2020/03/04/个人/社交焦虑/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="模板方法模式&amp;MVC复合模式">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="社交焦虑">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-08T13:26:21.000Z">2020-03-08</time></div>
-                    <a href="/2020/03/08/设计模式/模板方法模式&MVC复合模式/" class="title has-link-black-ter is-size-6 has-text-weight-normal">模板方法模式&amp;MVC复合模式</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-04T06:56:30.000Z">2020-03-04</time></div>
+                    <a href="/2020/03/04/个人/社交焦虑/" class="title has-link-black-ter is-size-6 has-text-weight-normal">社交焦虑</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/设计模式/">设计模式</a>
+                        <a class="has-link-grey -link" href="/categories/个人/">个人</a> / <a class="has-link-grey -link" href="/categories/个人/读书笔记/">读书笔记</a>
                     </p>
                 </div>
             </div>
@@ -603,56 +628,18 @@
         
         <article class="media">
             
-            <a href="/2020/03/08/设计模式/观察者模式&命令模式/" class="media-left">
+            <a href="/2020/02/20/Python/装饰器、函数及类的调用/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="观察者模式&amp;命令模式">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="装饰器、函数及类的调用">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-08T08:49:49.000Z">2020-03-08</time></div>
-                    <a href="/2020/03/08/设计模式/观察者模式&命令模式/" class="title has-link-black-ter is-size-6 has-text-weight-normal">观察者模式&amp;命令模式</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-20T13:04:01.000Z">2020-02-20</time></div>
+                    <a href="/2020/02/20/Python/装饰器、函数及类的调用/" class="title has-link-black-ter is-size-6 has-text-weight-normal">装饰器、函数及类的调用</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/设计模式/">设计模式</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/03/06/设计模式/门面模式（外观模式，facade）&代理模式/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="门面模式（外观模式，facade）&amp;代理模式">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-06T14:18:02.000Z">2020-03-06</time></div>
-                    <a href="/2020/03/06/设计模式/门面模式（外观模式，facade）&代理模式/" class="title has-link-black-ter is-size-6 has-text-weight-normal">门面模式（外观模式，facade）&amp;代理模式</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/设计模式/">设计模式</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/03/06/设计模式/单例模式&工厂模式/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="单例模式&amp;工厂模式">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-06T13:10:36.000Z">2020-03-06</time></div>
-                    <a href="/2020/03/06/设计模式/单例模式&工厂模式/" class="title has-link-black-ter is-size-6 has-text-weight-normal">单例模式&amp;工厂模式</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/设计模式/">设计模式</a>
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
                     </p>
                 </div>
             </div>
@@ -671,12 +658,34 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2020/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/03/">
                 <span class="level-start">
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -709,7 +718,7 @@
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">13</span>
+                    <span class="level-item tag">12</span>
                 </span>
             </a>
         </li>
@@ -847,7 +856,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/数据科学/">
                         <span class="tag">数据科学</span>
-                        <span class="tag is-grey">6</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -876,20 +885,6 @@
                     <a class="tags has-addons" href="/tags/网络爬虫/">
                         <span class="tag">网络爬虫</span>
                         <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/论文阅读/">
-                        <span class="tag">论文阅读</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/设计模式/">
-                        <span class="tag">设计模式</span>
-                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -925,16 +920,54 @@
         
         <article class="media">
             
-            <a href="/2020/03/29/数据科学/主成分分析/" class="media-left">
+            <a href="/2020/08/28/网站迁移/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="主成分分析">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="网站迁移">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-29T09:09:21.000Z">2020-03-29</time></div>
-                    <a href="/2020/03/29/数据科学/主成分分析/" class="title has-link-black-ter is-size-6 has-text-weight-normal">主成分分析</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-28T08:43:00.000Z">2020-08-28</time></div>
+                    <a href="/2020/08/28/网站迁移/" class="title has-link-black-ter is-size-6 has-text-weight-normal">网站迁移</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/04/11/网络爬虫/网络基础/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-11T11:12:04.694Z">2020-04-11</time></div>
+                    <a href="/2020/04/11/网络爬虫/网络基础/" class="title has-link-black-ter is-size-6 has-text-weight-normal"></a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/06/数据科学/Perceptron/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="感知器">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-06T09:02:01.000Z">2020-03-06</time></div>
+                    <a href="/2020/03/06/数据科学/Perceptron/" class="title has-link-black-ter is-size-6 has-text-weight-normal">感知器</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/数据科学/">数据科学</a>
                     </p>
@@ -944,18 +977,18 @@
         
         <article class="media">
             
-            <a href="/2020/03/08/设计模式/模板方法模式&MVC复合模式/" class="media-left">
+            <a href="/2020/03/04/个人/社交焦虑/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="模板方法模式&amp;MVC复合模式">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="社交焦虑">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-08T13:26:21.000Z">2020-03-08</time></div>
-                    <a href="/2020/03/08/设计模式/模板方法模式&MVC复合模式/" class="title has-link-black-ter is-size-6 has-text-weight-normal">模板方法模式&amp;MVC复合模式</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-04T06:56:30.000Z">2020-03-04</time></div>
+                    <a href="/2020/03/04/个人/社交焦虑/" class="title has-link-black-ter is-size-6 has-text-weight-normal">社交焦虑</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/设计模式/">设计模式</a>
+                        <a class="has-link-grey -link" href="/categories/个人/">个人</a> / <a class="has-link-grey -link" href="/categories/个人/读书笔记/">读书笔记</a>
                     </p>
                 </div>
             </div>
@@ -963,56 +996,18 @@
         
         <article class="media">
             
-            <a href="/2020/03/08/设计模式/观察者模式&命令模式/" class="media-left">
+            <a href="/2020/02/20/Python/装饰器、函数及类的调用/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="观察者模式&amp;命令模式">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="装饰器、函数及类的调用">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-08T08:49:49.000Z">2020-03-08</time></div>
-                    <a href="/2020/03/08/设计模式/观察者模式&命令模式/" class="title has-link-black-ter is-size-6 has-text-weight-normal">观察者模式&amp;命令模式</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-20T13:04:01.000Z">2020-02-20</time></div>
+                    <a href="/2020/02/20/Python/装饰器、函数及类的调用/" class="title has-link-black-ter is-size-6 has-text-weight-normal">装饰器、函数及类的调用</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/设计模式/">设计模式</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/03/06/设计模式/门面模式（外观模式，facade）&代理模式/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="门面模式（外观模式，facade）&amp;代理模式">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-06T14:18:02.000Z">2020-03-06</time></div>
-                    <a href="/2020/03/06/设计模式/门面模式（外观模式，facade）&代理模式/" class="title has-link-black-ter is-size-6 has-text-weight-normal">门面模式（外观模式，facade）&amp;代理模式</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/设计模式/">设计模式</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/03/06/设计模式/单例模式&工厂模式/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="单例模式&amp;工厂模式">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-06T13:10:36.000Z">2020-03-06</time></div>
-                    <a href="/2020/03/06/设计模式/单例模式&工厂模式/" class="title has-link-black-ter is-size-6 has-text-weight-normal">单例模式&amp;工厂模式</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/设计模式/">设计模式</a>
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
                     </p>
                 </div>
             </div>
@@ -1031,12 +1026,34 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2020/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/03/">
                 <span class="level-start">
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1069,7 +1086,7 @@
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">13</span>
+                    <span class="level-item tag">12</span>
                 </span>
             </a>
         </li>
@@ -1207,7 +1224,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/数据科学/">
                         <span class="tag">数据科学</span>
-                        <span class="tag is-grey">6</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -1236,20 +1253,6 @@
                     <a class="tags has-addons" href="/tags/网络爬虫/">
                         <span class="tag">网络爬虫</span>
                         <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/论文阅读/">
-                        <span class="tag">论文阅读</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/设计模式/">
-                        <span class="tag">设计模式</span>
-                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
